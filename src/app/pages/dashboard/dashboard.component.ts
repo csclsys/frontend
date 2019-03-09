@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   }
 
   constructor(
-    private user: UserService
+    public user: UserService
   ) { }
 
   ngOnInit() {
