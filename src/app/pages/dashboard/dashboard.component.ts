@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
       description: 'Tirar uma dúvida sobre algum assunto ou disciplina',
       tooltip: '',
       router: '/forum'
-
     },
     {
       icon: 'wb_incandescent',
