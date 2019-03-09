@@ -1,5 +1,5 @@
 .dashboard-setence {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   color: #555;
 }
@@ -8,4 +8,37 @@
   font-size: 2rem;
   font-weight: 300;
   color: #555;
+}
+
+.dashboard-question-cards, .dashboard-course-cards {
+  margin-top: 20px;
+}
+
+.dashboard-question-cards .card {
+  min-height: 150px;
+  cursor: pointer;
+}
+
+.dashboard-question-cards .card .card-body{
+  display: inline-flex;
+  align-items: center;
+}
+
+.dashboard-question-cards .card .card-body mat-icon{
+  margin-right: 10px;
+}
+
+.dashboard-course-cards {
+
+}
+
+.courses-dashboard-title {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #555;
+}
+
+.course-card-img {
+  object-fit: cover;
+  height: 150px;
 }
