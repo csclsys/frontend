@@ -1,12 +1,13 @@
 <div class="main-container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="main-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="app-name">Discite</h1>
+    <h1 class="app-name" routerLink="/dashboard">Discite</h1>
 
     <div role="group" class="toolbar-btns">
-      <button mat-icon-button><mat-icon>person</mat-icon></button>
-      <button mat-icon-button><mat-icon>notifications</mat-icon></button>
-      <button mat-icon-button><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button matTooltip="Seu perfil"> <mat-icon>person</mat-icon></button>
+      <button mat-icon-button matTooltip="Notificações"><mat-icon>notifications</mat-icon></button>
+      <button mat-icon-button matTooltip="Configurações"><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button matTooltip="Sair"><mat-icon color="warn">exit_to_app</mat-icon></button>
     </div>
 
   </mat-toolbar>

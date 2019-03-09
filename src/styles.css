@@ -22,3 +22,13 @@
   -ms-transform: translateY(-10px);
   -moz-transform: translateY(-10px);
 }
+
+/* Tooltip */
+
+.mat-tooltip {
+  font-size: 0.8em;
+}
+
+button:focus {
+
+}
