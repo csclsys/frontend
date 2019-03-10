@@ -1,7 +1,19 @@
 <div class="container">
-
-  <p>
-    forum works!
-  </p>
-
+  <div class="row">
+    <div class="col-12">
+      <p class="forum-presentation">
+        Foruns
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2" *ngFor="let forum of foruns">
+      <div class="card float-card card-forum">
+        <img class="card-img-top img-card" [src]="forum.imgPath" alt="Forum card image">
+        <div class="card-forum-title">
+          {{forum.title}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
