@@ -10,6 +10,7 @@ import {ForumModel} from '../forum.model';
 export class ForumSectionComponent implements OnInit {
 
   id;
+  selectedForum: ForumModel;
 
   foruns: ForumModel[] = [
     {
@@ -92,6 +93,16 @@ export class ForumSectionComponent implements OnInit {
           console.log(this.id);
         }
       );
+
+    this.foruns.forEach(item => {
+      if (item.id === this.id) {
+        this.selectedForum = item;
+        return;
+      }
+    });
+
+    console.log(this.selectedForum);
+
   }
 
 }

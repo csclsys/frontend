@@ -5,6 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material-module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { ForumSectionComponent } from './pages/forum/forum-section/forum-section.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,18 @@ import { ForumSectionComponent } from './pages/forum/forum-section/forum-section
     DashboardComponent,
     ForumComponent,
     CoursesComponent,
-    ForumSectionComponent
+    ForumSectionComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

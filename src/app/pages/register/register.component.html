@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="page-title">
+        Cadastre-se
+      </h1>
+    </div>
+  </div>
+
+  <form [formGroup]="registerForm">
+    <div class="row">
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput required placeholder="Primeiro nome" formControlName="firstName">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput required placeholder="Último nome" formControlName="lastName">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <input type="date" required  matInput placeholder="Nascimento" formControlName="birth">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <mat-select required placeholder="Sexo" formControlName="gender">
+            <mat-option *ngFor="let gender of genderGroup" [value]="gender">
+              {{gender}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12 actions-btn-group" align="end">
+      <button mat-raised-button color="primary" [disabled]="!registerForm.valid"> <mat-icon>check</mat-icon> <span> Cadastrar</span></button>
+      <button mat-raised-button color="warn"><mat-icon>close</mat-icon> <span>Cancelar</span></button>
+    </div>
+  </div>
+
+  <pre>{{registerForm.getRawValue() | json}}</pre>
+
+
+    <mat-slider
+      [formControl]="howMuchDidYouLike"
+      thumbLabel="true"
+      min="0"
+      max="'100'"
+    >
+
+    </mat-slider>
+
+  <pre>{{howMuchDidYouLike.valid | json}}</pre>
+
+</div>
