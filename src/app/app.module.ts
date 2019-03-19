@@ -17,6 +17,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { ForumSectionComponent } from './pages/forum/forum-section/forum-section.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RegisterComponent } from './pages/register/register.component';
     MaterialModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

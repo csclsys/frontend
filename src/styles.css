@@ -55,3 +55,47 @@ button:focus {
 }
 
 
+
+/*PAGE AREA*/
+
+.page-area {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px 40px 20px 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .page-area {
+    padding: 10px 20px 20px 20px;
+  }
+}
+
+.component-title  {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+}
+
+.component-title h1{
+
+  font-weight: normal;
+  font-size: 2em;
+  display: inline-flex;
+}
+
+.component-title button {
+  float: right;
+}
+
+.button-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button-group button ~ button {
+  margin-left: 6px;
+}
+
+

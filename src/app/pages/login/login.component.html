@@ -1,3 +1,68 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div class="row  d-flex justify-content-center align-items-center">
+    <mat-card class="form-card">
+      <div class="row">
+        <div class="col-6"><p class="button-login text-center">Login</p></div>
+        <div class="col-6"><p routerLink="/cadastro" class="text-center button-cadastro">Cadastre-se</p></div>
+      </div>
+      <!-- Login -->
+      <mat-card-header>
+        <div mat-card-image class="logo-product"></div>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-center">
+          Faça login para ter acesso ao sistema.
+        </p>
+        <div class="form-login">
+          <form [formGroup]="loginFormGroup">
+            <div class="row">
+              <div class="col-12">
+                <mat-form-field class="input-form">
+                  <input formControlName="cpf" autofocus  matInput placeholder="CPF ou E-mail" required>
+                  <mat-error>É necessário informar o <strong>CPF OU E-mail</strong> para fazer login.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <mat-form-field class="input-form">
+                  <input formControlName="password" matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" required>
+                  <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  <mat-error>É necessário informar a <strong>senha</strong> para fazer login.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <div class="row d-flex align-items-center">
+                  <div class="col-6" align="start">
+                    <p class="text-left">
+                      <button mat-button class="forgot-button" type="button" (click)="openForgotMyPassword()">Esqueci minha senha</button>
+                    </p>
+                  </div>
+                  <div class="col-6" align="end">
+                    <p class="text-right">
+                      <button mat-fab color="primary" matTooltip="Entrar" [disabled]="!loginFormGroup.valid" (click)="login()"> <mat-icon>arrow_forward</mat-icon> </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" style="margin: 10px 0 -10px 0">
+                <p class="text-center h6" style="margin-bottom: -1px">Em caso de dúvidas, consulte o suporte</p>
+                <p class="text-center h4"><strong><a href="tel:3003-5412">3003-5412</a></strong></p>
+              </div>
+              <div class="col-12 align-content-end">
+                <p class=" h5 text-right" style="text-decoration: none; margin: 20px -30px -6px 0"><a target="_blank" href="https://techpark.app/">techpark.app</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </mat-card-content>
+
+      <!-- Cadastro -->
+
+      <!--          <div class="cadastro-tab">
+                  <app-cadastro></app-cadastro>
+                </div>-->
+    </mat-card>
+  </div>
+</div>
