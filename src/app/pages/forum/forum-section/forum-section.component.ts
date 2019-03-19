@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ForumModel} from '../forum.model';
+import {ForumModel, ForumTalk} from '../forum.model';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-forum-section',
@@ -80,6 +81,29 @@ export class ForumSectionComponent implements OnInit {
     }
   ];
 
+  forunsTalks: ForumTalk[] = [
+    {
+      id: 0,
+      title: 'Qual a diferença entre algortimos polinomiais e recussivos?',
+      votes: 12,
+      replies: 1,
+      views: 101,
+      tags: ['algoritmo', 'recussividade', 'matemática'],
+    },
+    {
+      id: 1,
+      title: 'Em que casos eu posso usar o método "Dividir para conquistar" para resolver meus problemas com o menor custo?',
+      votes: 3,
+      replies: 0,
+      views: 27,
+      tags: ['algoritmo', 'recussividade', 'matemática', 'custo'],
+    },
+  ];
+  forumSectionTalkCtr = new FormControl('', [Validators.required]);
+
+  forumSectionTags = ['algoritmo', 'recussividade', 'matemática', 'custo'];
+  forumSectionTagsCtr = new FormControl('', [Validators.required]);
+
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -102,6 +126,22 @@ export class ForumSectionComponent implements OnInit {
     });
 
     console.log(this.selectedForum);
+
+  }
+
+  addTalk() {
+    this.forunsTalks.unshift({
+      id: this.forunsTalks.length - 1,
+      title: this.forumSectionTalkCtr.value,
+      votes: 0,
+      replies: 0,
+      views: 0,
+      // @ts-ignore
+      tags: this.forumSectionTagsCtr.value,
+    });
+
+    this.forumSectionTagsCtr.patchValue([]);
+    this.forumSectionTalkCtr.patchValue('');
 
   }
 

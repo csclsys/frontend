@@ -18,6 +18,7 @@ import { ForumSectionComponent } from './pages/forum/forum-section/forum-section
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ForumTalkComponent } from './pages/forum/forum-section/forum-talk/forum-talk.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     CoursesComponent,
     ForumSectionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForumTalkComponent
   ],
   imports: [
     BrowserModule,

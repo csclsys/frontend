@@ -76,6 +76,8 @@ export class ForumComponent implements OnInit {
   ];
 
 
+
+
   constructor() { }
 
   ngOnInit() {
