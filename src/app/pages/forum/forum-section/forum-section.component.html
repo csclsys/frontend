@@ -6,31 +6,40 @@
       </h1>
     </div>
   </div>
-  <div class="row justify-content-md-center">
-    <div class="col-md-8">
-      <mat-form-field class="example-full-width">
-        <textarea [formControl]="forumSectionTalkCtr" matInput></textarea>
-        <mat-label><mat-icon>contact_support</mat-icon> Tem alguma dúvida referente à <em>{{selectedForum.title}}?</em> Pergunte aqui</mat-label>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="col-md-3" align="end">
-      <mat-form-field>
-        <mat-select placeholder="Tags" [formControl]="forumSectionTagsCtr" multiple>
-          <mat-select-trigger>
-            {{forumSectionTagsCtr.value ? forumSectionTagsCtr.value[0] : ''}}
-            <span *ngIf="forumSectionTagsCtr.value?.length > 1">
+
+  <div class="row page-area">
+
+    <div class="col-12">
+
+      <div class="row justify-content-md-center">
+        <div class="col-md-8">
+          <mat-form-field class="example-full-width">
+            <textarea [formControl]="forumSectionTalkCtr" matInput></textarea>
+            <mat-label><mat-icon>contact_support</mat-icon> Tem alguma dúvida referente à <em>{{selectedForum.title}}?</em> Pergunte aqui</mat-label>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-3" align="end">
+          <mat-form-field>
+            <mat-select placeholder="Tags" [formControl]="forumSectionTagsCtr" multiple>
+              <mat-select-trigger>
+                {{forumSectionTagsCtr.value ? forumSectionTagsCtr.value[0] : ''}}
+                <span *ngIf="forumSectionTagsCtr.value?.length > 1">
         (+{{forumSectionTagsCtr.value.length - 1}} {{forumSectionTagsCtr.value?.length === 2 ? 'outro' : 'outros'}})
       </span>
-          </mat-select-trigger>
-          <mat-option *ngFor="let tag of forumSectionTags" [value]="tag">{{tag}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+              </mat-select-trigger>
+              <mat-option *ngFor="let tag of forumSectionTags" [value]="tag">{{tag}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5" align="end">
+          <button style="margin-top: 10px" (click)="addTalk()" [disabled]="forumSectionTalkCtr.invalid || forumSectionTagsCtr.invalid" mat-flat-button color="accent">Perguntar</button>
+        </div>
+      </div>
+
     </div>
-    <div class="col-md-5" align="end">
-      <button style="margin-top: 10px" (click)="addTalk()" [disabled]="forumSectionTalkCtr.invalid || forumSectionTagsCtr.invalid" mat-flat-button color="accent">Perguntar</button>
-    </div>
+
   </div>
 
   <div style="margin-top: 40px" class="row">
