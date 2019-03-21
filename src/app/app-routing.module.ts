@@ -6,6 +6,7 @@ import {ForumComponent} from './pages/forum/forum.component';
 import {CoursesComponent} from './pages/courses/courses.component';
 import {ForumSectionComponent} from './pages/forum/forum-section/forum-section.component';
 import {RegisterComponent} from './pages/register/register.component';
+import {ForumTalkComponent} from './pages/forum/forum-section/forum-talk/forum-talk.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -15,7 +16,10 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'forum', children: [
           {path: '', component: ForumComponent},
-          {path: 'secao', component: ForumSectionComponent},
+          {path: 'secao', children: [
+              {path: '', component: ForumSectionComponent},
+              {path: 'discussao', component: ForumTalkComponent},
+            ]},
         ]},
       {path: 'cursos', component: CoursesComponent},
     ]
