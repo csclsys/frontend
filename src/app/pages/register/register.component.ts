@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   cpfValid;
 
+  profileGroup = ['Aluno', 'Professor', 'Monitor'];
   genderGroup = ['Masculino', 'Feminino', 'Prefiro não dizer'];
   maritalStatus = ['Solteiro (a)', 'Casado (a)', 'União estável, Separado (a), Divorciado (a), Viúvo (a)'];
   nacionalities = ['Brasileiro (a)', 'Naturalizado (a)', 'Estrangeiro (a)'];
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
     /****** Steper 2 ******/
 
     this.step2formgroup = this.formBuilder.group({
+      perfil: ['', Validators.required],
       rg: ['', Validators.required],
       nome: ['', Validators.required],
       estadoCivil: ['', Validators.required],
@@ -65,6 +67,7 @@ export class RegisterComponent implements OnInit {
      * CPF validator - defines the stepper 'next' control
      */
     const control = this.step1formgroup.controls.cpf;
+
     control.valueChanges.subscribe(value => {
       if (value.toString().length === 11) {
         if (this.checkCpf()) {

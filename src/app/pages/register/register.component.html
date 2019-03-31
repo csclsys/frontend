@@ -16,8 +16,8 @@
       <!--------------------- Step 1 --------------------->
 
       <mat-step [stepControl]="step1formgroup">
+        <ng-template matStepLabel>CPF</ng-template>
         <form [formGroup]="step1formgroup">
-          <ng-template matStepLabel>CPF</ng-template>
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-3 col-sm-3 col-6">
@@ -39,6 +39,18 @@
         <form [formGroup]="step2formgroup">
           <ng-template matStepLabel>Cadastro</ng-template>
           <div class="container-fluid">
+
+            <div class="row">
+              <div class="col-md-6 col-sm-8 col-12">
+                <mat-form-field>
+                  <mat-select placeholder="Perfil" formControlName="perfil" required>
+                    <mat-option *ngFor="let perfil of profileGroup" [value]="perfil">
+                      {{ perfil }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
 
             <div class="row">
 
@@ -102,7 +114,6 @@
               </mat-form-field>
 
             </div>
-
             <p class="title-reg-sec"> Endereço </p>
 
             <div class="row">
@@ -176,16 +187,17 @@
       </mat-step>
 
 
+
     </mat-vertical-stepper>
   </div>
 
-  <!--  <div class="row">
+   <div class="row">
       <div class="col-6">
         <pre>{{step1formgroup.value | json}}</pre>
       </div>
       <div class="col-6">
         <pre>{{step2formgroup.value | json}}</pre>
       </div>
-    </div>-->
+    </div>
 
 </div>
