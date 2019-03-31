@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-form-field {
   width: 100%;
@@ -98,9 +98,11 @@ button:focus {
   margin-left: 6px;
 }
 
-/*todo: Tirar isso*/
+/*
+!*todo: Tirar isso*!
 .card, .page-area, .forum-talk-line {
   background-color: #555 !important;
 }
+*/
 
 
