@@ -19,6 +19,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ForumTalkComponent } from './pages/forum/forum-section/forum-talk/forum-talk.component';
+import { UsersControlComponent } from './pages/users-control/users-control.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ForumTalkComponent } from './pages/forum/forum-section/forum-talk/forum
     ForumSectionComponent,
     LoginComponent,
     RegisterComponent,
-    ForumTalkComponent
+    ForumTalkComponent,
+    UsersControlComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,11 @@ import {CoursesComponent} from './pages/courses/courses.component';
 import {ForumSectionComponent} from './pages/forum/forum-section/forum-section.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {ForumTalkComponent} from './pages/forum/forum-section/forum-talk/forum-talk.component';
+import {UsersControlComponent} from './pages/users-control/users-control.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'usuarios', component: UsersControlComponent},
   {path: 'cadastro', component: RegisterComponent, pathMatch: 'full'},
   {
     path: '', children: [
