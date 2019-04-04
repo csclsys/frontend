@@ -75,7 +75,6 @@ button:focus {
 .component-title  {
   margin-top: 40px;
   margin-bottom: 20px;
-
 }
 
 .component-title h1{
@@ -87,6 +86,30 @@ button:focus {
 
 .component-title button {
   float: right;
+}
+
+.component-title mat-icon {
+  font-size: 1.5em;
+  /*padding-right: 10px;*/
+}
+
+@media (max-width: 768px) {
+  .component-title .title-sec mat-icon, .component-title .title-sec h1{
+    font-size: 1.3em;
+  }
+}
+
+.component-title .title-sec {
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+}
+
+.component-title .title-sec h1{
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 0px;
 }
 
 .button-group {
@@ -104,5 +127,42 @@ button:focus {
   background-color: #555 !important;
 }
 */
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding-right: 10px !important;
+}
+
+/* Table Data */
+div.table-data {
+  height: auto;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+div.table-data table{
+  width: 100%;
+}
+
+div.table-data mat-paginator {
+  float: bottom;
+}
+
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.mat-mini-fab ~ .mat-mini-fab, .mat-mini-fab ~ .mat-fab, .mat-fab ~ .mat-mini-fab {
+  margin-left: 10px;
+}
+
+
+.btn-table-page button ~ .btn-table-page button{
+  margin-left: 10px !important;
+}
 
 

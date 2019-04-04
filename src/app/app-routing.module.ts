@@ -24,6 +24,11 @@ const routes: Routes = [
             ]},
         ]},
       {path: 'cursos', component: CoursesComponent},
+      {path: 'usuarios', children: [
+          {path: '', component: UsersControlComponent},
+          {path: 'cadastrar', component: UsersControlComponent},
+          {path: 'editar', component: UsersControlComponent},
+        ]},
     ]
   }
 ];

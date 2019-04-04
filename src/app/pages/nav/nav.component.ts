@@ -26,6 +26,12 @@ export class NavComponent implements OnInit, OnDestroy {
       icon: 'wb_incandescent',
       router: './cursos',
       toolTip: 'Cursos para aprender e crescer'
+    },
+    {
+      name: 'Usuarios',
+      icon: 'people',
+      router: './usuarios',
+      toolTip: 'Gerencie os usuários da plataforma'
     }
   ];
 

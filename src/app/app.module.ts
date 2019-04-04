@@ -20,6 +20,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ForumTalkComponent } from './pages/forum/forum-section/forum-talk/forum-talk.component';
 import { UsersControlComponent } from './pages/users-control/users-control.component';
+import { AddUserComponent } from './pages/users-control/add-user/add-user.component';
+import { EditUserComponent } from './pages/users-control/edit-user/edit-user.component';
+import {MatPaginatorIntl} from '@angular/material';
+import {MatPaginatorIntlPt} from './pt-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,8 @@ import { UsersControlComponent } from './pages/users-control/users-control.compo
     RegisterComponent,
     ForumTalkComponent,
     UsersControlComponent,
+    AddUserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,9 @@ import { UsersControlComponent } from './pages/users-control/users-control.compo
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
