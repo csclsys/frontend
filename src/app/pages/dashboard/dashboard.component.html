@@ -6,17 +6,28 @@
       <span class="dashboard-setence">Olá!, {{user.getName()}}</span>
     </div>
     <div class="col-12">
-      <span class="dashboard-question">O que deseja fazer agora?</span>
+      <span class="dashboard-question">Você está na disciplina <strong>{{currentSubject}}</strong></span>
+    </div>
+    <div class="col-12">
+      <mat-divider></mat-divider>
     </div>
   </div>
 
   <div class="row dashboard-question-cards">
 
+    <div class="col-12">
+      <h5 style="margin: 10px 0 30px 0">Foruns que você abriu ou interagiu</h5>
+    </div>
+
     <div class="col-md-3" *ngFor="let card of dashQuestCards">
       <div class="card float-card" [routerLink]="card.router">
         <div class="card-body">
           <mat-icon [style.color]="card.iconColor">{{card.icon}}</mat-icon>
-          <span>{{card.description}}</span>
+          <br>
+          <div>
+            <p>{{card.description}}</p>
+            <p style="font-size: 0.6rem">Visual.: 20 | Respostas: 3</p>
+          </div>
         </div>
       </div>
     </div>

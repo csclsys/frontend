@@ -11,10 +11,10 @@ import {CepService} from '../../services/cep.service';
 export class UsersControlComponent implements OnInit {
 
   usersFake = [
-    {name: 'João das Couve', profile: 'Adminstrador'},
-    {name: 'Marcelo Flores', profile: 'Professor'},
-    {name: 'Rosalinda Novaes', profile: 'Professor'},
-    {name: 'Mario Cequeira', profile: 'Professor'},
+    {id: 1, name: 'João das Couve', profile: 'Adminstrador'},
+    {id: 2, name: 'Marcelo Flores', profile: 'Professor'},
+    {id: 3, name: 'Rosalinda Novaes', profile: 'Professor'},
+    {id: 4, name: 'Mario Cequeira', profile: 'Professor'},
   ];
 
   displayedColumns: string[] = ['name', 'profile', 'star'];

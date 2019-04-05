@@ -1,12 +1,15 @@
 <div class="main-container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="main-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="app-name" routerLink="/dashboard">Discite</h1>
+    <h1 class="app-name" routerLink="/dashboard" style="margin-right: 10px">Discite</h1>
+    <mat-chip-list aria-label="">
+      <mat-chip color="accent" selected>{{currentSubject}}</mat-chip>
+    </mat-chip-list>
 
     <div role="group" class="toolbar-btns">
       <button mat-icon-button matTooltip="Seu perfil"> <mat-icon>person</mat-icon></button>
       <button mat-icon-button matTooltip="Notificações"><mat-icon  matBadge="6" matBadgeColor="warn">notifications</mat-icon></button>
-      <button mat-icon-button matTooltip="Configurações"><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button routerLink="/configuracoes" matTooltip="Configurações"><mat-icon>settings</mat-icon></button>
       <button mat-icon-button matTooltip="Sair"><mat-icon color="warn">exit_to_app</mat-icon></button>
     </div>
 
@@ -14,8 +17,23 @@
 
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav class="sidenav-content" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+      <div class="subject-list-wrapper">
+        <span matTooltip="Selecione uma disciplina para poder ir a sua seção.">Selecione uma disciplina (?)</span>
+
+        <mat-form-field color="primary">
+          <mat-select [(value)]="currentSubject" placeholder="Disciplina" style="padding: 10px;">
+            <mat-option (click)="setSubject(item)"  *ngFor="let item of subjects" [value]="item.title">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+      </div>
+
       <mat-nav-list>
         <a mat-list-item [routerLink]="item.router" [matTooltip]="item.toolTip" *ngFor="let item of menuItens"><mat-icon class="nav-list-icon">{{item.icon}}</mat-icon>{{item.name}}</a>
+        <mat-divider></mat-divider>
       </mat-nav-list>
     </mat-sidenav>
 

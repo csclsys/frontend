@@ -1,5 +1,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+button{
+  outline: 0!important;
+}
+
 .mat-form-field {
   width: 100%;
 }

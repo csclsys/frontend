@@ -24,6 +24,11 @@ import { AddUserComponent } from './pages/users-control/add-user/add-user.compon
 import { EditUserComponent } from './pages/users-control/edit-user/edit-user.component';
 import {MatPaginatorIntl} from '@angular/material';
 import {MatPaginatorIntlPt} from './pt-paginator-intl';
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { AddSubjectComponent } from './pages/subjects/add-subject/add-subject.component';
+import { EditSubjectComponent } from './pages/subjects/edit-subject/edit-subject.component';
+import { ViewSubjectComponent } from './pages/subjects/view-subject/view-subject.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import {MatPaginatorIntlPt} from './pt-paginator-intl';
     UsersControlComponent,
     AddUserComponent,
     EditUserComponent,
+    SubjectsComponent,
+    AddSubjectComponent,
+    EditSubjectComponent,
+    ViewSubjectComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

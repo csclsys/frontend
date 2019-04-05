@@ -26,7 +26,7 @@ h1.app-name {
 }
 
 .sidenav-content {
-  min-width: 200px;
+  width: 256px;
 }
 
 .is-mobile .sidenav-container {
@@ -51,4 +51,8 @@ h1.app-name {
 
 .toolbar-btns button ~ button {
   margin-left: 10px;
+}
+
+.subject-list-wrapper {
+  padding: 10px;
 }

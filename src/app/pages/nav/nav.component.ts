@@ -8,6 +8,31 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class NavComponent implements OnInit, OnDestroy {
 
+  currentSubject = 'Nenhuma disciplina escolhida';
+
+  subjects = [
+    {
+      id: '1',
+      title: 'Complexidade de Algoritmos'
+    },
+    {
+      id: '2',
+      title: 'Estrutura de Dados'
+    },
+    {
+      id: '3',
+      title: 'Linguagens de programação II'
+    },
+    {
+      id: '4',
+      title: 'Calculo III'
+    },
+    {
+      id: '5',
+      title: 'Física III'
+    }
+  ];
+
   menuItens = [
     {
       name: 'Dashboard',
@@ -51,5 +76,17 @@ export class NavComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    CURRENT_SUBJECT = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
+    this.currentSubject = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
   }
+
+  async setSubject(option) {
+    await localStorage.setItem('@discite:currentSubject', JSON.stringify(option));
+    location.reload();
+  }
+
 }
+
+
+export let CURRENT_SUBJECT = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
+

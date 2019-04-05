@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {CURRENT_SUBJECT} from '../nav/nav.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,23 +8,52 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  currentSubject = CURRENT_SUBJECT;
 
   dashQuestCards: DashQuestCards[] = [
     {
       icon: 'forum',
       iconColor: '#22a7f0',
-      description: 'Tirar uma dúvida sobre algum assunto ou disciplina',
+      description: 'Questão aberta 1',
       tooltip: '',
       router: '/forum'
     },
     {
-      icon: 'wb_incandescent',
-      iconColor: '#f7ca18',
-      description: 'Aprender algo novo',
+      icon: 'forum',
+      iconColor: '#22a7f0',
+      description: 'Questão aberta 2',
       tooltip: '',
-      router: '/cursos'
+      router: '/forum'
+    },
+    {
+      icon: 'forum',
+      iconColor: '#22a7f0',
+      description: 'Questão aberta 3',
+      tooltip: '',
+      router: '/forum'
+    },
+    {
+      icon: 'forum',
+      iconColor: '#22a7f0',
+      description: 'Questão aberta 4',
+      tooltip: '',
+      router: '/forum'
+    },
+    {
+      icon: 'forum',
+      iconColor: '#22a7f0',
+      description: 'Questão aberta 5',
+      tooltip: '',
+      router: '/forum'
+    },
+    {
+      icon: 'forum',
+      iconColor: '#22a7f0',
+      description: 'Questão aberta 6',
+      tooltip: '',
+      router: '/forum'
+    },
 
-    }
   ];
 
   courseDashboardCards: CourseDashboardCards[] = [

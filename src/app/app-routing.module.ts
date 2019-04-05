@@ -8,6 +8,10 @@ import {ForumSectionComponent} from './pages/forum/forum-section/forum-section.c
 import {RegisterComponent} from './pages/register/register.component';
 import {ForumTalkComponent} from './pages/forum/forum-section/forum-talk/forum-talk.component';
 import {UsersControlComponent} from './pages/users-control/users-control.component';
+import {AddUserComponent} from './pages/users-control/add-user/add-user.component';
+import {EditUserComponent} from './pages/users-control/edit-user/edit-user.component';
+import {SettingsComponent} from './pages/settings/settings.component';
+import {SubjectsComponent} from './pages/subjects/subjects.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -24,10 +28,12 @@ const routes: Routes = [
             ]},
         ]},
       {path: 'cursos', component: CoursesComponent},
+      {path: 'configuracoes', component: SettingsComponent},
+      {path: 'disciplinas', component: SubjectsComponent},
       {path: 'usuarios', children: [
           {path: '', component: UsersControlComponent},
-          {path: 'cadastrar', component: UsersControlComponent},
-          {path: 'editar', component: UsersControlComponent},
+          {path: 'cadastrar', component: AddUserComponent},
+          {path: 'editar', component: EditUserComponent},
         ]},
     ]
   }

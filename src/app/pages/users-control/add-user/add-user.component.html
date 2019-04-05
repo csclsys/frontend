@@ -1,3 +1,203 @@
-<p>
-  add-user works!
-</p>
+<div class="container">
+  <div class="component-title">
+    <div class="row">
+      <div class="col-10 d-inline-flex align-items-center">
+        <mat-icon>person_add</mat-icon>
+        <span style="font-size: 1.4em">&nbsp;Cadastrar Usuário</span>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="spacer"></div>
+
+  <div class="container-fluid page-area mat-elevation-z4">
+    <mat-vertical-stepper linear="false" #stepper selectedIndex="0">
+
+      <!--------------------- Step 1 --------------------->
+
+      <mat-step [stepControl]="step1formgroup">
+        <ng-template matStepLabel>CPF</ng-template>
+        <form [formGroup]="step1formgroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-6">
+                <mat-form-field>
+                  <input matInput maxlength="11" placeholder="CPF" formControlName="cpf" required>
+                  <mat-error *ngIf="false" >CPF Inválido</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </mat-step>
+
+
+      <!--------------------- Step 2 --------------------->
+
+      <mat-step [stepControl]="step2formgroup">
+        <form [formGroup]="step2formgroup">
+          <ng-template matStepLabel>Cadastro</ng-template>
+          <div class="container-fluid">
+
+            <div class="row">
+              <div class="col-md-6 col-sm-8 col-12">
+                <mat-form-field>
+                  <mat-select placeholder="Perfil" formControlName="perfil" required>
+                    <mat-option *ngFor="let perfil of profileGroup" [value]="perfil">
+                      {{ perfil }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6 col-sm-8 col-12">
+                <mat-form-field>
+                  <input matInput placeholder="Nome" formControlName="nome" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3 col-sm-4 col-6">
+                <mat-form-field>
+                  <input matInput placeholder="RG" maxlength="12" formControlName="rg" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-6">
+                <mat-form-field>
+                  <input matInput placeholder="Dt. Nasc." type="date" formControlName="dtNasc" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-6">
+                <mat-form-field>
+                  <mat-select placeholder="Sexo" formControlName="sexo" required>
+                    <mat-option *ngFor="let item of genderGroup" [value]="item">
+                      {{item}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-6">
+                <mat-form-field>
+                  <mat-select placeholder="Estado civil" formControlName="estadoCivil" required>
+                    <mat-option *ngFor="let item of maritalStatus" [value]="item">
+                      {{item}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-6">
+                <mat-form-field>
+                  <mat-select placeholder="Nacionalidade" formControlName="naturalidade"  required>
+                    <mat-option *ngFor="let item of nacionalities" [value]="item">
+                      {{item}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field class="col-md-3 col-sm-6 col-12">
+                <input type="tel" matInput placeholder="Tel. fixo" kzMask="(99) 9999-9999" formControlName="telCtrl1">
+
+                <mat-hint>Ex: (11) 3210-1234</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-3 col-sm-6 col-12">
+                <input type="tel" matInput placeholder="Celular" kzMask="(99) 99999-9999"  formControlName="telCtrl2" required>
+                <mat-hint>Ex: (11) 98765-4321</mat-hint>
+              </mat-form-field>
+
+            </div>
+            <p class="title-reg-sec"> Endereço </p>
+
+            <div class="row">
+              <mat-form-field class="col-md-3 col-sm-6 col-8">
+                <input matInput  placeholder="CEP" formControlName="cep"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-2 col-sm-6 col-4">
+                <input matInput placeholder="UF" formControlName="uf"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-7 col-sm-12 col-12">
+                <input matInput placeholder="Cidade" formControlName="cidade"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-4 col-sm-12 col-12">
+                <input matInput placeholder="Logradouro" formControlName="logradouro"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-3 col-sm-12 col-12">
+                <input matInput placeholder="Bairro" formControlName="bairro" required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-2 col-sm-4 col-4">
+                <input matInput placeholder="Nº" formControlName="no"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-3 col-sm-8 col-8">
+                <input matInput placeholder="Complemento" formControlName="complemento">
+              </mat-form-field>
+            </div>
+
+            <p class="title-reg-sec"> Acesso </p>
+            <div class="row">
+              <mat-form-field class="col-md-6 col-sm-12 col-12">
+                <input matInput placeholder="E-mail" formControlName="email"  required>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-3 col-sm-12 col-12">
+                <input type="password" #pass matInput placeholder="Senha" formControlName="senha" required>
+              </mat-form-field>
+
+              <!--            <mat-form-field class="col-md-3 col-sm-12 col-12">
+                            <input type="password" #passCheck matInput placeholder="Confimar senha" formControlName="confirmaSenha" required>
+                            <mat-error *ngIf="step2formgroup.value.senha !== step2formgroup.value.senha">Senhas não coincidem</mat-error>
+                          </mat-form-field>-->
+
+            </div>
+
+            <div class="row button-group">
+              <div class="col-12" align="end">
+                <button mat-button matStepperPrevious><mat-icon>arrow_back</mat-icon> Anterior </button>
+                <button mat-button (click)="stepper.reset()"><mat-icon>refresh</mat-icon> Recomeçar</button>
+                <button mat-fab
+                        routerLink="/painel/usuarios"
+                        matTooltip="Cancelar"
+                        aria-label="Button that displays a tooltip when focused or hovered over"
+                        color="warn">
+                  <mat-icon>close</mat-icon>
+                </button>
+
+                <button mat-fab (click)="onFormSubmit(step1formgroup.value, step2formgroup.value)"
+                        [disabled]="!step2formgroup.valid"
+                        matTooltip="Cadastrar" color="primary" cdkFocusInitial>
+                  <mat-icon>check</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+
+
+
+    </mat-vertical-stepper>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <pre>{{step1formgroup.value | json}}</pre>
+    </div>
+    <div class="col-6">
+      <pre>{{step2formgroup.value | json}}</pre>
+    </div>
+  </div>
+
+</div>
