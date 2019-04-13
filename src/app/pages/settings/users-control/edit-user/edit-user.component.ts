@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatStepper} from '@angular/material';
-import {CepService} from '../../../services/cep.service';
+import {CepService} from '../../../../services/cep.service';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class EditUserComponent implements OnInit {
 
   step1formgroup: FormGroup;
   step2formgroup: FormGroup;
@@ -20,7 +20,6 @@ export class AddUserComponent implements OnInit {
   maritalStatus = ['Solteiro (a)', 'Casado (a)', 'União estável, Separado (a), Divorciado (a), Viúvo (a)'];
   nacionalities = ['Brasileiro (a)', 'Naturalizado (a)', 'Estrangeiro (a)'];
 
-  @ViewChild('stepper') stepper: MatStepper;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,30 +62,6 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
 
 
-    /**
-     * CPF validator - defines the stepper 'next' control
-     */
-    const control = this.step1formgroup.controls.cpf;
-
-    control.valueChanges.subscribe(value => {
-      if (value.toString().length === 11) {
-        if (this.checkCpf()) {
-          this.step1formgroup.patchValue({
-            isValid: true
-          });
-          this.stepper.next();
-        } else {
-          this.step1formgroup.patchValue({
-            isValid: ''
-          });
-          this.openSnackBar('CPF Inválido', 'OK');
-        }
-      } else {
-        this.step1formgroup.patchValue({
-          isValid: ''
-        });
-      }
-    });
 
     /**
      * CEP Search

@@ -47,16 +47,16 @@ export class NavComponent implements OnInit, OnDestroy {
       toolTip: 'Forum para tirar dúvidas'
     },
     {
-      name: 'Cursos',
-      icon: 'wb_incandescent',
+      name: 'Chat',
+      icon: 'chat',
       router: './cursos',
-      toolTip: 'Cursos para aprender e crescer'
+      toolTip: 'Chat com os monitores e professores para tirar dúvidas'
     },
     {
-      name: 'Usuarios',
-      icon: 'people',
+      name: 'Video Chat',
+      icon: 'voice_chat',
       router: './usuarios',
-      toolTip: 'Gerencie os usuários da plataforma'
+      toolTip: 'Video Chat com os monitores e professores para tirar dúvidas'
     }
   ];
 
@@ -76,6 +76,12 @@ export class NavComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
+    if (!JSON.parse(localStorage.getItem('@discite:currentSubject')).title) {
+      CURRENT_SUBJECT = 'Nenhuma disciplina escolhida';
+    }
+
+
     CURRENT_SUBJECT = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
     this.currentSubject = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
   }
@@ -88,5 +94,5 @@ export class NavComponent implements OnInit, OnDestroy {
 }
 
 
-export let CURRENT_SUBJECT = JSON.parse(localStorage.getItem('@discite:currentSubject')).title || 'Nenhuma disciplina escolhida';
+export let CURRENT_SUBJECT = 'Nenhuma disciplina escolhida';
 

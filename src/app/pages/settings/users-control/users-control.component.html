@@ -1,7 +1,7 @@
 <div class="container">
   <div class="component-title">
     <div class="row">
-      <button mat-mini-fab style="margin: 0 0 30px 10px" class="back-btn-general" matTooltip="Voltar" routerLink="/dashboard" color="primary"><mat-icon>arrow_back</mat-icon></button>
+      <button mat-mini-fab style="margin: 0 0 30px 10px" class="back-btn-general" matTooltip="Voltar" routerLink="/configuracoes" color="primary"><mat-icon>arrow_back</mat-icon></button>
     </div>
     <div class="row">
       <div class="col-12 title-sec">
@@ -23,7 +23,7 @@
   <mat-divider></mat-divider>
 
 
-  <div class="table-data">
+  <div class="table-data mat-elevation-z4">
     <div style="margin: 0 10px 0 10px">
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro geral">

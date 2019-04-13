@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class SettingsComponent implements OnInit {
 
   settings = [
-    {icon: 'people', title: 'Usuários', desc: '', route: '/usuarios'},
-    {icon: 'book', title: 'Cursos', desc: '', route: '/cursos'},
+    {icon: 'fas fa-users', color: '#6ab04c', title: 'Usuários', desc: '', route: '/usuarios'},
+    {icon: 'fas fa-layer-group', color: '#22a6b3', title: 'Cursos', desc: '', route: '/cursos'},
+    {icon: 'fas fa-book', color: '#30336b', title: 'Disciplinas', desc: '', route: '/disciplinas'},
+    {icon: 'fas fa-chalkboard-teacher', color: '#be2edd', title: 'Turmas', desc: '', route: '/turmas'},
   ];
 
   constructor() { }

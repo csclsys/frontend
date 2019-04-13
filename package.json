@@ -8,7 +8,8 @@
     "deploy": "ng build --prod --build-optimizer --output-path=public && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "fixlinux": "echo 65536 | sudo tee -a /proc/sys/fs/inotify/max_user_watches"
   },
   "private": true,
   "dependencies": {

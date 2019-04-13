@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatPaginator, MatSnackBar, MatStepper, MatTableDataSource} from '@angular/material';
-import {CepService} from '../../services/cep.service';
+import {CepService} from '../../../services/cep.service';
 
 @Component({
   selector: 'app-register',

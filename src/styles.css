@@ -169,4 +169,8 @@ div.table-data mat-paginator {
   margin-left: 10px !important;
 }
 
+.chip-small {
+  font-size: 0.8rem;
+}
+
 

@@ -16,11 +16,11 @@
 
   <div class="row" style="margin-top: 10px">
     <div class="col-md-4" *ngFor="let item of settings" style="margin-top: 20px">
-      <div class="card mat-elevation-z4">
-        <div class="card-header d-inline-flex bg-light"><mat-icon style="margin-right: 6px">{{item.icon}}</mat-icon> {{item.title}}</div>
+      <div class="card mat-elevation-z4" [style.background-color]="item.color">
+        <div class="card-header d-inline-flex align-items-center h4 text-light"><i style="margin-right: 10px; font-size: 1.4rem" [class]="item.icon"></i> {{item.title}}</div>
         <div class="card-body">
           <div style="width: 100%" align="end">
-            <button mat-fab [routerLink]="item.route"><mat-icon>launch</mat-icon></button>
+            <button mat-fab color="primary" [style.background-color]="item.color" [routerLink]="item.route"><mat-icon>launch</mat-icon></button>
           </div>
         </div>
       </div>
