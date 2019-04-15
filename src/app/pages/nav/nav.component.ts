@@ -41,6 +41,12 @@ export class NavComponent implements OnInit, OnDestroy {
       toolTip: 'Navegar para o dashboard'
     },
     {
+      name: 'Temas',
+      icon: 'bookmark',
+      router: './temas',
+      toolTip: 'Temas para uso nos Foruns, Chat e Video Chat'
+    },
+    {
       name: 'Forum',
       icon: 'forum',
       router: './forum',
@@ -49,13 +55,13 @@ export class NavComponent implements OnInit, OnDestroy {
     {
       name: 'Chat',
       icon: 'chat',
-      router: './cursos',
+      router: './chats',
       toolTip: 'Chat com os monitores e professores para tirar dúvidas'
     },
     {
       name: 'Video Chat',
       icon: 'voice_chat',
-      router: './usuarios',
+      router: './videochats',
       toolTip: 'Video Chat com os monitores e professores para tirar dúvidas'
     }
   ];

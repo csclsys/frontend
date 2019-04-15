@@ -37,6 +37,13 @@ import { AddClassroomComponent } from './pages/settings/classrooms/add-classroom
 import { EditClassroomComponent } from './pages/settings/classrooms/edit-classroom/edit-classroom.component';
 import { ViewClassroomComponent } from './pages/settings/classrooms/view-classroom/view-classroom.component';
 import { ViewUserComponent } from './pages/settings/users-control/view-user/view-user.component';
+import { ThemesComponent } from './pages/themes/themes.component';
+import { AddEditThemeComponent } from './pages/themes/add-edit-theme/add-edit-theme.component';
+import { ChatsComponent } from './pages/chats/chats.component';
+import { ChatSectionComponent } from './pages/chats/chat-section/chat-section.component';
+import { VideochatsComponent } from './pages/videochats/videochats.component';
+import { VideochatsSectionComponent } from './pages/videochats/videochats-section/videochats-section.component';
+import {WebcamModule} from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -65,6 +72,12 @@ import { ViewUserComponent } from './pages/settings/users-control/view-user/view
     EditClassroomComponent,
     ViewClassroomComponent,
     ViewUserComponent,
+    ThemesComponent,
+    AddEditThemeComponent,
+    ChatsComponent,
+    ChatSectionComponent,
+    VideochatsComponent,
+    VideochatsSectionComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +87,8 @@ import { ViewUserComponent } from './pages/settings/users-control/view-user/view
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    WebcamModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt}

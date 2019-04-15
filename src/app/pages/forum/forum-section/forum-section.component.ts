@@ -11,7 +11,7 @@ import {FormControl, Validators} from '@angular/forms';
 export class ForumSectionComponent implements OnInit {
 
   id;
-  selectedForum: ForumModel;
+  selectedForum;
 
   foruns: ForumModel[] = [
     {
@@ -85,23 +85,21 @@ export class ForumSectionComponent implements OnInit {
     {
       id: 0,
       title: 'Qual a diferença entre algortimos polinomiais e recussivos?',
-      votes: 12,
       replies: 1,
       views: 101,
-      tags: ['algoritmo', 'recussividade', 'matemática'],
+      tag: 'Tema 1',
     },
     {
       id: 1,
       title: 'Em que casos eu posso usar o método "Dividir para conquistar" para resolver meus problemas com o menor custo?',
-      votes: 3,
       replies: 0,
       views: 27,
-      tags: ['algoritmo', 'recussividade', 'matemática', 'custo'],
+      tag: 'Tema 2',
     },
   ];
   forumSectionTalkCtr = new FormControl('', [Validators.required]);
 
-  forumSectionTags = ['algoritmo', 'recussividade', 'matemática', 'custo'];
+  forumSectionTags = ['Tema 1', 'Tema 2', 'Tema 3', 'Tema 4'];
   forumSectionTagsCtr = new FormControl('', [Validators.required]);
 
   constructor(
@@ -110,22 +108,28 @@ export class ForumSectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(
-        (queryParams: any) => {
-          this.id = queryParams.id;
-          console.log(this.id);
-        }
-      );
+    /*    this.route.queryParams
+          .subscribe(
+            (queryParams: any) => {
+              this.id = queryParams.id;
+              console.log(this.id);
+            }
+          );*/
 
-    this.foruns.forEach(item => {
+    /*this.foruns.forEach(item => {
       if (item.id === this.id) {
         this.selectedForum = item;
         return;
       }
     });
 
-    console.log(this.selectedForum);
+    console.log(this.selectedForum);*/
+
+
+    this.selectedForum = {
+      id: '1',
+      title: JSON.parse(localStorage.getItem('@discite:currentSubject')).title
+    };
 
   }
 
@@ -133,14 +137,13 @@ export class ForumSectionComponent implements OnInit {
     this.forunsTalks.unshift({
       id: this.forunsTalks.length - 1,
       title: this.forumSectionTalkCtr.value,
-      votes: 0,
       replies: 0,
       views: 0,
       // @ts-ignore
-      tags: this.forumSectionTagsCtr.value,
+      tag: this.forumSectionTagsCtr.value,
     });
 
-    this.forumSectionTagsCtr.patchValue([]);
+    this.forumSectionTagsCtr.patchValue('');
     this.forumSectionTalkCtr.patchValue('');
 
   }

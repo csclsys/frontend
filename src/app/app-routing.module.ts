@@ -22,6 +22,12 @@ import {ViewSubjectComponent} from "./pages/settings/subjects/view-subject/view-
 import {AddClassroomComponent} from "./pages/settings/classrooms/add-classroom/add-classroom.component";
 import {EditClassroomComponent} from "./pages/settings/classrooms/edit-classroom/edit-classroom.component";
 import {ViewClassroomComponent} from "./pages/settings/classrooms/view-classroom/view-classroom.component";
+import {ThemesComponent} from './pages/themes/themes.component';
+import {AddEditThemeComponent} from './pages/themes/add-edit-theme/add-edit-theme.component';
+import {ChatsComponent} from './pages/chats/chats.component';
+import {ChatSectionComponent} from './pages/chats/chat-section/chat-section.component';
+import {VideochatsComponent} from './pages/videochats/videochats.component';
+import {VideochatsSectionComponent} from './pages/videochats/videochats-section/videochats-section.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -31,16 +37,40 @@ const routes: Routes = [
     path: '', children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'forum', children: [
-          {path: '', component: ForumComponent},
-          {path: 'secao', children: [
-              {path: '', component: ForumSectionComponent},
-              {path: 'discussao', component: ForumTalkComponent},
-            ]},
+          {path: '', component: ForumSectionComponent},
+          // {path: 'secao', children: [
+          {path: '', component: ForumSectionComponent},
+          {path: 'discussao', component: ForumTalkComponent},
+          // ]},
         ]},
 
       /****** SETTINGS ******/
       {path: 'configuracoes', children: [
           {path: '', component: SettingsComponent},
+        ]},
+
+      /****** CHATS ******/
+      {path: 'chats', children: [
+          {path: '', component: ChatsComponent},
+          {path: 'secao', component: ChatSectionComponent},
+        ]},
+
+      /****** VIDEOCHAT ******/
+      {path: 'videochats', children: [
+          {path: '', component: VideochatsComponent},
+          {path: 'secao', component: VideochatsSectionComponent},
+        ]},
+
+
+      /****** SETTINGS ******/
+      {path: 'configuracoes', children: [
+          {path: '', component: SettingsComponent},
+        ]},
+
+      /****** Temas ******/
+      {path: 'temas', children: [
+          {path: '', component: ThemesComponent},
+          {path: 'add-edit', component: AddEditThemeComponent},
         ]},
 
 

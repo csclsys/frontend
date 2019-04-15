@@ -15,18 +15,16 @@ export class ForumTalkComponent implements OnInit {
     {
       id: 0,
       title: 'Qual a diferença entre algortimos polinomiais e recussivos?',
-      votes: 12,
       replies: 1,
       views: 101,
-      tags: ['algoritmo', 'recussividade', 'matemática'],
+      tag: 'Tema 1',
     },
     {
       id: 1,
       title: 'Em que casos eu posso usar o método "Dividir para conquistar" para resolver meus problemas com o menor custo?',
-      votes: 3,
       replies: 0,
       views: 27,
-      tags: ['algoritmo', 'recussividade', 'matemática', 'custo'],
+      tag: 'Tema 2',
     },
   ];
 

@@ -8,8 +8,7 @@ export interface ForumModel {
 export interface ForumTalk {
   id: any;
   title: string;
-  votes: number;
   replies: number;
   views: number;
-  tags: string[];
+  tag: string;
 }
