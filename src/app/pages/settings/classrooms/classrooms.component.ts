@@ -11,9 +11,9 @@ export interface TurmaModel{
   nome: string;
   semestre: string;
   ano: string;
-  usu_id: number;
+  professorId: number;
   professor? : UsersModel;
-  dis_id: number;
+  disciplinaId: number;
   disciplina: DisciplinaModel;
 }
 
@@ -30,16 +30,25 @@ export class ClassroomsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.api.get('cursos')
+    this.api.get('turmas')
       .pipe(
         map( (turmas:TurmaModel[]) => turmas ),
-        mergeMap( turmass => from(turmass)
+        mergeMap( turmas => from(turmas)
           .pipe(
             map( (turma: TurmaModel) => turma ),
-            concatMap( turmaa => this.api.get('usuario', {id : turmaa.usu_id})
+            tap( turma => console.log(turma) ),
+            concatMap( turma => this.api.get(`usuarios/${turma.professorId}`)
               .pipe(
                 map( (professor:UsersModel) => professor ),
-                tap( professorr => turmaa.professor = professorr )
+                tap( professor => turma.professor = professor ),
+                map(  professor => turma )
+              )
+            ),
+            concatMap( turma => this.api.get(`disciplinas/${turma.disciplinaId}`)
+              .pipe(
+                map( (disciplina:DisciplinaModel) => disciplina ),
+                tap( disciplina => turma.disciplina = disciplina ),
+                map( disciplina => turma )
               )
             ),
             toArray()
@@ -47,7 +56,7 @@ export class ClassroomsComponent implements OnInit {
         ),
       )
       .subscribe({
-      next: res => {
+      next: (res: TurmaModel[]) => {
         console.log(res);
         this.dataSource = new MatTableDataSource(res);
       },
