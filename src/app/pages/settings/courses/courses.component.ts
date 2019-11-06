@@ -1,5 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {ApiService} from "../../../services/api.service";
+
+interface CursoModel {
+  id: number;
+  nome: string;
+}
+
 
 @Component({
   selector: 'app-courses',
@@ -7,29 +14,21 @@ import {MatPaginator, MatTableDataSource} from "@angular/material";
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
+  constructor(private api: ApiService ) {}
 
-  coursesFake = [
-    {id: 1, course: 'Arquitetura', knowArea: ['Ciências humanas', 'Ciências da Natureza', 'Matemática']},
-    {id: 2, course: 'Biologia', knowArea: ['Ciências biológicas', 'Ciências da Natureza', 'Matemática']},
-    {id: 3, course: 'Ciência da Computação', knowArea: ['Ciências da Natureza', 'Matemática', 'TI']},
-    {id: 4, course: 'Odontologia', knowArea: ['Ciências biológicas', 'Ciências da Natureza', 'Saúde']},
-    {id: 5, course: 'Sistemas de Informação', knowArea: ['TI']},
-    {id: 5, course: 'TADS', knowArea: ['TI']},
-  ];
+  displayedColumns: string[] = ['id', 'nome'];
+  dataSource;
 
 
-
-  displayedColumns: string[] = ['course', 'knowArea', 'star'];
-  dataSource = new MatTableDataSource();
-  // @ts-ignore
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
-
-  constructor() {}
 
   ngOnInit() {
-    this.dataSource.data = this.coursesFake;
-    this.dataSource.paginator = this.paginator;
+    this.api.get('cursos').subscribe({
+      next: (res: CursoModel[]) => {
+        console.log(res);
+        this.dataSource = new MatTableDataSource(res);
+      },
+      error: err => console.log(err)
+    });
 
   }
 

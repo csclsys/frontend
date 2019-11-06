@@ -1,5 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {ApiService} from "../../../services/api.service";
+import {UsersModel} from "../users-control/users.model";
+import {DisciplinaModel} from "../subjects/subjects.component";
+import {forkJoin, from, Observable} from "rxjs";
+import {concatMap, map, mergeMap, tap, toArray} from "rxjs/operators";
+
+export interface TurmaModel{
+  id: number;
+  nome: string;
+  semestre: string;
+  ano: string;
+  usu_id: number;
+  professor? : UsersModel;
+  dis_id: number;
+  disciplina: DisciplinaModel;
+}
 
 @Component({
   selector: 'app-classrooms',
@@ -7,50 +23,36 @@ import {MatPaginator, MatTableDataSource} from "@angular/material";
   styleUrls: ['./classrooms.component.css']
 })
 export class ClassroomsComponent implements OnInit {
+  constructor(private api: ApiService ) {}
 
-  subjectsFake = [
-    {
-      id: 1,
-      classroom: '2019/1',
-      classnumb: '1',
-      subject: 'Analise e Projeto de Sistemas I',
-      courses: ['Ciência da Computação']
-    },
-    {
-      id: 2,
-      classroom: '2019/1',
-      classnumb: '2',
-      subject: 'Analise e Projeto de Sistemas I',
-      courses: ['Sistema de Informação', 'TADS']
-    },
-    {
-      id: 3,
-      classroom: '2019/1',
-      classnumb: '1',
-      subject: 'Complexidade de Algorítimos',
-      courses: ['Ciência da Computação']
-    },
-    {
-      id: 4,
-      classroom: '2019/1',
-      classnumb: '1',
-      subject: 'Engenharia de Requisitos',
-      courses: ['Sistema de Informação']
-    },
-  ];
+  displayedColumns: string[] = ['id', 'nome', 'semestre', 'ano', 'professor', 'disciplina'];
+  dataSource;
 
-  displayedColumns: string[] = ['id', 'classroom', 'classnumb', 'subject', 'courses', 'star'];
-  dataSource = new MatTableDataSource();
-  // @ts-ignore
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
-
-  constructor() {
-  }
 
   ngOnInit() {
-    this.dataSource.data = this.subjectsFake;
-    this.dataSource.paginator = this.paginator;
+    this.api.get('cursos')
+      .pipe(
+        map( (turmas:TurmaModel[]) => turmas ),
+        mergeMap( turmass => from(turmass)
+          .pipe(
+            map( (turma: TurmaModel) => turma ),
+            concatMap( turmaa => this.api.get('usuario', {id : turmaa.usu_id})
+              .pipe(
+                map( (professor:UsersModel) => professor ),
+                tap( professorr => turmaa.professor = professorr )
+              )
+            ),
+            toArray()
+          )
+        ),
+      )
+      .subscribe({
+      next: res => {
+        console.log(res);
+        this.dataSource = new MatTableDataSource(res);
+      },
+      error: err => console.log(err)
+    });
 
   }
 

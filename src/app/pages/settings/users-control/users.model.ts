@@ -1,5 +1,8 @@
 export interface UsersModel {
-  name: string;
-  lastname: string;
-  profile: string;
+  id: number;
+  nome: string;
+  sobrenome: string;
+  cpf: string;
+  matricula: string;
+  papel: string;
 }
