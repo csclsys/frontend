@@ -28,6 +28,7 @@ import {ChatsComponent} from './pages/chats/chats.component';
 import {ChatSectionComponent} from './pages/chats/chat-section/chat-section.component';
 import {VideochatsComponent} from './pages/videochats/videochats.component';
 import {VideochatsSectionComponent} from './pages/videochats/videochats-section/videochats-section.component';
+import {DialogoComumComponent} from './services/dialog/dialogo.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -104,6 +105,7 @@ const routes: Routes = [
           {path: 'cadastrar', component: AddUserComponent},
           {path: 'editar', component: EditUserComponent},
           {path: 'visualizar', component: ViewUserComponent},
+          {path: 'dialog', component: DialogoComumComponent},
         ]},
     ]
   }

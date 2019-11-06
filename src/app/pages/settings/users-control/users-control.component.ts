@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatPaginator, MatSnackBar, MatStepper, MatTableDataSource} from '@angular/material';
-import {CepService} from '../../../services/cep.service';
-import {ApiService} from "../../../services/api.service";
-import {UsersModel} from "./users.model";
+import {Component, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
+import {ApiService} from '../../../services/api.service';
+import {UsersModel} from './users.model';
+import {DialogoService} from '../../../services/dialog/dialogo.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +10,10 @@ import {UsersModel} from "./users.model";
   styleUrls: ['./users-control.component.css']
 })
 export class UsersControlComponent implements OnInit {
-  constructor(private api: ApiService ) {}
+  constructor(private api: ApiService, public dialogo: DialogoService) {
+  }
 
-  displayedColumns: string[] = ['id', 'nome', 'matricula', 'cpf' , 'papel'];
+  displayedColumns: string[] = ['id', 'nome', 'matricula', 'cpf', 'papel'];
   dataSource;
 
   ngOnInit() {
@@ -24,6 +24,21 @@ export class UsersControlComponent implements OnInit {
       },
       error: err => console.log(err)
     });
+  }
+
+  importarTodosUsuarios() {
+
+    this.api.post('usuarios/importarUsuarios', {})
+      .subscribe((result: any[]) => {
+        this.dialogo.abrirDialogoComum('sccs', `${result.length} usuário(s) importado(s) com sucesso!`);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+
+      }, error => {
+        this.dialogo.abrirDialogoComum('erro', 'Ocorreu um erro na sua solicitação, por favor, tente mais tarde!');
+      });
   }
 
   applyFilter(filterValue: string) {

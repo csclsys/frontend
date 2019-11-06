@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+  <div class="row">
+
+    <div class="col-12">
+      <p class="text-center">
+        <img *ngIf="data.type === 'sccs'" src="../../../../assets/img/checked.png" style="max-width: 100px" alt="">
+        <img *ngIf="data.type === 'erro'" src="../../../../assets/img/cancel.png" style="max-width: 100px" alt="">
+        <img *ngIf="data.type === 'info'" src="../../../../assets/img/information.png" style="max-width: 100px" alt="">
+      </p>
+    </div>
+
+
+    <div class="col-12" style="margin: 20px 0 20px 0">
+      <h5 class="text-center">
+        {{data.info}}
+      </h5>
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <p class="text-center">
+      <button mat-button mat-dialog-close cdkFocusInitial>Fechar</button>
+    </p>
+  </div>
+</div>

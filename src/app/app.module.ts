@@ -44,6 +44,7 @@ import { ChatSectionComponent } from './pages/chats/chat-section/chat-section.co
 import { VideochatsComponent } from './pages/videochats/videochats.component';
 import { VideochatsSectionComponent } from './pages/videochats/videochats-section/videochats-section.component';
 import {WebcamModule} from 'ngx-webcam';
+import {DialogoComumComponent} from './services/dialog/dialogo.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {WebcamModule} from 'ngx-webcam';
     ChatsComponent,
     ChatSectionComponent,
     VideochatsComponent,
-    VideochatsSectionComponent
+    VideochatsSectionComponent,
+    DialogoComumComponent
   ],
   imports: [
     BrowserModule,
