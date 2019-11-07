@@ -128,7 +128,7 @@ export class ForumSectionComponent implements OnInit {
 
     this.selectedForum = {
       id: '1',
-      title: JSON.parse(localStorage.getItem('@discite:currentSubject')).title
+      title: JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplina
     };
 
   }

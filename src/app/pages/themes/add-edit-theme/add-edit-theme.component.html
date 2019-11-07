@@ -1,14 +1,19 @@
-<h1 mat-dialog-title>{{addOrEdit === 'add' ? 'Cadastrando': 'Editando'}} um tema</h1>
+<h1 mat-dialog-title>{{addOrEdit === 'add' ? 'Cadastrando' : 'Editando'}} um tema</h1>
 <mat-dialog-content style="padding: 20px">
   <p>Qual tema gostaria de cadastrar?</p>
   <mat-form-field>
-    <input matInput [value]="addOrEdit === 'add' ? '': 'Tema X'">
+    <input matInput [value]="addOrEdit === 'add' ? '': 'Tema X'" [formControl]="tema">
   </mat-form-field>
   <div align="end">
-    <mat-slide-toggle>Ativo</mat-slide-toggle>
+    <mat-slide-toggle [formControl]="situacao">Ativo</mat-slide-toggle>
   </div>
 </mat-dialog-content>
 <div mat-dialog-actions align="end">
-  <button mat-mini-fab color="warn" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-  <button mat-mini-fab color="primary" (click)="onNoClick()"><mat-icon>check</mat-icon></button>
+  <button mat-mini-fab color="warn" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" [disabled]="tema.invalid"
+          [mat-dialog-close]="{tema: tema.value, situacao: situacao.value}">
+    <mat-icon>check</mat-icon>
+  </button>
 </div>

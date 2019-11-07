@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource} from "@angular/material";
-import {ApiService} from "../../../services/api.service";
+import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {ApiService} from '../../../services/api.service';
 import {DialogoService} from '../../../services/dialog/dialogo.service';
 
 interface CursoModel {
@@ -15,11 +15,11 @@ interface CursoModel {
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  constructor(private api: ApiService, public dialogo: DialogoService ) {}
+  constructor(private api: ApiService, public dialogo: DialogoService) {
+  }
 
   displayedColumns: string[] = ['id', 'nome'];
   dataSource;
-
 
 
   ngOnInit() {

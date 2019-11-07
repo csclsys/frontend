@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {AddEditThemeComponent} from './add-edit-theme/add-edit-theme.component';
+import {ApiService} from '../../services/api.service';
+import {DialogoService} from '../../services/dialog/dialogo.service';
+import {UsersModel} from '../settings/users-control/users.model';
 
 @Component({
   selector: 'app-themes',
@@ -8,36 +11,28 @@ import {AddEditThemeComponent} from './add-edit-theme/add-edit-theme.component';
   styleUrls: ['./themes.component.css']
 })
 export class ThemesComponent implements OnInit {
+  constructor(
+    public dialog: MatDialog,
+    public api: ApiService,
+    public dialogo: DialogoService
+  ) {
+  }
 
-  themesFake = [
-    {theme: 'Tema 1', active: true},
-    {theme: 'Tema 2', active: true},
-    {theme: 'Tema 3', active: true},
-    {theme: 'Tema 4', active: true},
-    {theme: 'Tema 5', active: false},
-    {theme: 'Tema 6', active: false},
-  ];
+  dataSource;
 
+  temasSelecionados: any[] = [];
 
-
-
-
+  usuarios: any[] = [];
 
 
-  displayedColumns: string[] = ['theme', 'active', 'star'];
-  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['id', 'tema', 'proponente', 'situacao'];
   // @ts-ignore
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 
-  constructor(
-    public dialog: MatDialog
-  ) {}
-
   ngOnInit() {
-    this.dataSource.data = this.themesFake;
+    this.buscarUsuarios();
     this.dataSource.paginator = this.paginator;
-
   }
 
   applyFilter(filterValue: string) {
@@ -53,7 +48,8 @@ export class ThemesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      const {tema, sitacao} = result;
+      this.cadastrarTema(tema, sitacao);
     });
   }
 
@@ -65,8 +61,64 @@ export class ThemesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
     });
+  }
+
+  buscarUsuarios() {
+    this.api.get('usuarios').subscribe({
+      next: (res: UsersModel[]) => {
+        console.log(res);
+        this.usuarios = res;
+
+        this.buscarTemas();
+
+      },
+      error: err => console.log(err)
+    });
+  }
+
+  buscarTemas() {
+    this.api.get('temas').subscribe(
+      (res: any) => {
+        console.log(res);
+
+        for (const tema of res) {
+          const disc = JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplinaId;
+          if (tema.disciplinaId === disc) {
+
+            const {nome, sobrenome} = this.usuarios[this.usuarios.findIndex(x => x.id === tema.proponenteId)];
+
+            this.temasSelecionados.push({
+              ...tema,
+              nomeProponente: `${nome} ${sobrenome}`
+            });
+          }
+        }
+
+        console.log(this.temasSelecionados);
+
+        this.dataSource = new MatTableDataSource(this.temasSelecionados);
+      },
+      error => {
+
+      }
+    );
+  }
+
+  cadastrarTema(tema: string, situacao: boolean) {
+    this.api.post('temas', {
+      nome: tema,
+      situacao: situacao ? 'aprovado' : 'pendente',
+      disciplinaId: JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplinaId,
+      proponenteId: JSON.parse(localStorage.getItem('usuario')).id
+    }).subscribe(res => {
+      this.dialogo.abrirDialogoComum('sccs', 'Tema cadastrado com sucesso!');
+
+      this.ngOnInit();
+
+    });
+
   }
 
 }
