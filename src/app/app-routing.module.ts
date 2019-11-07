@@ -30,6 +30,9 @@ import {VideochatsComponent} from './pages/videochats/videochats.component';
 import {VideochatsSectionComponent} from './pages/videochats/videochats-section/videochats-section.component';
 import {DialogoComumComponent} from './services/dialog/dialogo.service';
 import {LoginComponent} from './login/login.component';
+import {MatriculaAlunoComponent} from './pages/settings/matricula-aluno/matricula-aluno.component';
+import {MatriculaMonitorComponent} from './pages/settings/matricula-monitor/matricula-monitor.component';
+import {DesignarMonitorComponent} from './pages/settings/matricula-monitor/designar-monitor/designar-monitor.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -127,6 +130,21 @@ const routes: Routes = [
           {path: 'editar', component: EditUserComponent},
           {path: 'visualizar', component: ViewUserComponent},
           {path: 'dialog', component: DialogoComumComponent},
+        ]
+      },
+
+      /****** USERS ******/
+      {
+        path: 'alunos', children: [
+          {path: '', component: MatriculaAlunoComponent},
+        ]
+      },
+
+      /****** USERS ******/
+      {
+        path: 'monitores', children: [
+          {path: '', component: MatriculaMonitorComponent},
+          {path: 'designar-monitor', component: DesignarMonitorComponent}
         ]
       },
     ]

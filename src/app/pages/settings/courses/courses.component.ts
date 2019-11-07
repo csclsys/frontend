@@ -39,9 +39,7 @@ export class CoursesComponent implements OnInit {
       .subscribe((result: any[]) => {
         this.dialogo.abrirDialogoComum('sccs', `${result.length} cursos(s) importado(s) com sucesso!`);
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        this.ngOnInit();
 
       }, error => {
         this.dialogo.abrirDialogoComum('erro', 'Ocorreu um erro na sua solicitação, por favor, tente mais tarde!');

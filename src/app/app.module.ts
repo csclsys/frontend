@@ -45,6 +45,9 @@ import { VideochatsSectionComponent } from './pages/videochats/videochats-sectio
 import {WebcamModule} from 'ngx-webcam';
 import {DialogoComumComponent} from './services/dialog/dialogo.service';
 import {LoginComponent} from './login/login.component';
+import { MatriculaAlunoComponent } from './pages/settings/matricula-aluno/matricula-aluno.component';
+import { MatriculaMonitorComponent } from './pages/settings/matricula-monitor/matricula-monitor.component';
+import { DesignarMonitorComponent } from './pages/settings/matricula-monitor/designar-monitor/designar-monitor.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import {LoginComponent} from './login/login.component';
     VideochatsComponent,
     VideochatsSectionComponent,
     DialogoComumComponent,
-    LoginComponent
+    LoginComponent,
+    MatriculaAlunoComponent,
+    MatriculaMonitorComponent,
+    DesignarMonitorComponent
   ],
   imports: [
     BrowserModule,
