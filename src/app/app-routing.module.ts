@@ -12,16 +12,16 @@ import {EditUserComponent} from './pages/settings/users-control/edit-user/edit-u
 import {SettingsComponent} from './pages/settings/settings.component';
 import {SubjectsComponent} from './pages/settings/subjects/subjects.component';
 import {ClassroomsComponent} from './pages/settings/classrooms/classrooms.component';
-import {ViewUserComponent} from "./pages/settings/users-control/view-user/view-user.component";
-import {AddCourseComponent} from "./pages/settings/courses/add-course/add-course.component";
-import {EditCourseComponent} from "./pages/settings/courses/edit-course/edit-course.component";
-import {ViewCourseComponent} from "./pages/settings/courses/view-course/view-course.component";
-import {AddSubjectComponent} from "./pages/settings/subjects/add-subject/add-subject.component";
-import {EditSubjectComponent} from "./pages/settings/subjects/edit-subject/edit-subject.component";
-import {ViewSubjectComponent} from "./pages/settings/subjects/view-subject/view-subject.component";
-import {AddClassroomComponent} from "./pages/settings/classrooms/add-classroom/add-classroom.component";
-import {EditClassroomComponent} from "./pages/settings/classrooms/edit-classroom/edit-classroom.component";
-import {ViewClassroomComponent} from "./pages/settings/classrooms/view-classroom/view-classroom.component";
+import {ViewUserComponent} from './pages/settings/users-control/view-user/view-user.component';
+import {AddCourseComponent} from './pages/settings/courses/add-course/add-course.component';
+import {EditCourseComponent} from './pages/settings/courses/edit-course/edit-course.component';
+import {ViewCourseComponent} from './pages/settings/courses/view-course/view-course.component';
+import {AddSubjectComponent} from './pages/settings/subjects/add-subject/add-subject.component';
+import {EditSubjectComponent} from './pages/settings/subjects/edit-subject/edit-subject.component';
+import {ViewSubjectComponent} from './pages/settings/subjects/view-subject/view-subject.component';
+import {AddClassroomComponent} from './pages/settings/classrooms/add-classroom/add-classroom.component';
+import {EditClassroomComponent} from './pages/settings/classrooms/edit-classroom/edit-classroom.component';
+import {ViewClassroomComponent} from './pages/settings/classrooms/view-classroom/view-classroom.component';
 import {ThemesComponent} from './pages/themes/themes.component';
 import {AddEditThemeComponent} from './pages/themes/add-edit-theme/add-edit-theme.component';
 import {ChatsComponent} from './pages/chats/chats.component';
@@ -29,90 +29,113 @@ import {ChatSectionComponent} from './pages/chats/chat-section/chat-section.comp
 import {VideochatsComponent} from './pages/videochats/videochats.component';
 import {VideochatsSectionComponent} from './pages/videochats/videochats-section/videochats-section.component';
 import {DialogoComumComponent} from './services/dialog/dialogo.service';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'usuarios', component: UsersControlComponent},
   {path: 'cadastro', component: RegisterComponent, pathMatch: 'full'},
   {
     path: '', children: [
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'forum', children: [
+      {
+        path: 'forum', children: [
           {path: '', component: ForumSectionComponent},
           // {path: 'secao', children: [
           {path: '', component: ForumSectionComponent},
           {path: 'discussao', component: ForumTalkComponent},
           // ]},
-        ]},
+        ]
+      },
 
       /****** SETTINGS ******/
-      {path: 'configuracoes', children: [
+      {
+        path: 'configuracoes', children: [
           {path: '', component: SettingsComponent},
-        ]},
+        ]
+      },
 
       /****** CHATS ******/
-      {path: 'chats', children: [
+      {
+        path: 'chats', children: [
           {path: '', component: ChatsComponent},
           {path: 'secao', component: ChatSectionComponent},
-        ]},
+        ]
+      },
 
       /****** VIDEOCHAT ******/
-      {path: 'videochats', children: [
+      {
+        path: 'videochats', children: [
           {path: '', component: VideochatsComponent},
           {path: 'secao', component: VideochatsSectionComponent},
-        ]},
+        ]
+      },
 
 
       /****** SETTINGS ******/
-      {path: 'configuracoes', children: [
+      {
+        path: 'configuracoes', children: [
           {path: '', component: SettingsComponent},
-        ]},
+        ]
+      },
 
       /****** Temas ******/
-      {path: 'temas', children: [
+      {
+        path: 'temas', children: [
           {path: '', component: ThemesComponent},
           {path: 'add-edit', component: AddEditThemeComponent},
-        ]},
+        ]
+      },
 
 
       /****** COURSES ******/
-      {path: 'cursos', children: [
+      {
+        path: 'cursos', children: [
           {path: '', component: CoursesComponent},
           {path: 'cadastrar', component: AddCourseComponent},
           {path: 'editar', component: EditCourseComponent},
           {path: 'visualizar', component: ViewCourseComponent},
-        ]},
+        ]
+      },
 
       /****** SUBJECTS ******/
-      {path: 'disciplinas', children: [
+      {
+        path: 'disciplinas', children: [
           {path: '', component: SubjectsComponent},
           {path: 'cadastrar', component: AddSubjectComponent},
           {path: 'editar', component: EditSubjectComponent},
           {path: 'visualizar', component: ViewSubjectComponent},
-        ]},
+        ]
+      },
 
       /****** CLASSROOMS ******/
-      {path: 'turmas', children: [
+      {
+        path: 'turmas', children: [
           {path: '', component: ClassroomsComponent},
           {path: 'cadastrar', component: AddClassroomComponent},
           {path: 'editar', component: EditClassroomComponent},
           {path: 'visualizar', component: ViewClassroomComponent},
-        ]},
+        ]
+      },
 
       /****** USERS ******/
-      {path: 'usuarios', children: [
+      {
+        path: 'usuarios', children: [
           {path: '', component: UsersControlComponent},
           {path: 'cadastrar', component: AddUserComponent},
           {path: 'editar', component: EditUserComponent},
           {path: 'visualizar', component: ViewUserComponent},
           {path: 'dialog', component: DialogoComumComponent},
-        ]},
+        ]
+      },
     ]
   }
 ];
 
 @NgModule({
-  exports: [ RouterModule ],
-  imports: [ RouterModule.forRoot(routes) ]
+  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

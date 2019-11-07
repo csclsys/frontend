@@ -15,7 +15,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { CoursesComponent } from './pages/settings/courses/courses.component';
 import { ForumSectionComponent } from './pages/forum/forum-section/forum-section.component';
-import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ForumTalkComponent } from './pages/forum/forum-section/forum-talk/forum-talk.component';
@@ -45,6 +44,7 @@ import { VideochatsComponent } from './pages/videochats/videochats.component';
 import { VideochatsSectionComponent } from './pages/videochats/videochats-section/videochats-section.component';
 import {WebcamModule} from 'ngx-webcam';
 import {DialogoComumComponent} from './services/dialog/dialogo.service';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import {DialogoComumComponent} from './services/dialog/dialogo.service';
     ForumComponent,
     CoursesComponent,
     ForumSectionComponent,
-    LoginComponent,
     RegisterComponent,
     ForumTalkComponent,
     UsersControlComponent,
@@ -79,7 +78,8 @@ import {DialogoComumComponent} from './services/dialog/dialogo.service';
     ChatSectionComponent,
     VideochatsComponent,
     VideochatsSectionComponent,
-    DialogoComumComponent
+    DialogoComumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

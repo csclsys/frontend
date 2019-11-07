@@ -1,30 +1,38 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {UsersModel} from '../pages/settings/users-control/users.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  userInfo: UserData = {
-    firstName: 'João',
-    lastName: 'das Couves',
+  userInfoFake: UserData = {
+    firstName: '-',
+    lastName: '-',
     birth: '1995-04-27T03:40:00.000Z',
     gender: 'Male',
   };
 
   public getName() {
-    return `${this.userInfo.firstName} ${this.userInfo.lastName}`;
+
+    if (localStorage.getItem('usuario')) {
+      const {nome, sobrenome}: UsersModel = JSON.parse(localStorage.getItem('usuario'));
+      return `${nome} ${sobrenome}`;
+    }
+
+    return `${this.userInfoFake.firstName} ${this.userInfoFake.lastName}`;
   }
 
   public getBirth() {
-    return new Date(this.userInfo.birth);
+    return new Date(this.userInfoFake.birth);
   }
 
   public getGender() {
-    return this.userInfo.gender;
+    return this.userInfoFake.gender;
   }
 
-  constructor() { }
+  constructor() {
+  }
 }
 
 export interface UserData {

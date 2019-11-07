@@ -5,6 +5,7 @@ import {UsersModel} from "../users-control/users.model";
 import {DisciplinaModel} from "../subjects/subjects.component";
 import {forkJoin, from, Observable} from "rxjs";
 import {concatMap, map, mergeMap, tap, toArray} from "rxjs/operators";
+import {DialogoService} from '../../../services/dialog/dialogo.service';
 
 export interface TurmaModel{
   id: number;
@@ -23,7 +24,7 @@ export interface TurmaModel{
   styleUrls: ['./classrooms.component.css']
 })
 export class ClassroomsComponent implements OnInit {
-  constructor(private api: ApiService ) {}
+  constructor(private api: ApiService, public dialogo: DialogoService ) {}
 
   displayedColumns: string[] = ['id', 'nome', 'semestre', 'ano', 'professor', 'disciplina'];
   dataSource;
@@ -63,6 +64,21 @@ export class ClassroomsComponent implements OnInit {
       error: err => console.log(err)
     });
 
+  }
+
+  importarTodasTurmas() {
+
+    this.api.post('turmas/importarTurmas', {})
+      .subscribe((result: any[]) => {
+        this.dialogo.abrirDialogoComum('sccs', `${result.length} turma(s) importado(s) com sucesso!`);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+
+      }, error => {
+        this.dialogo.abrirDialogoComum('erro', 'Ocorreu um erro na sua solicitação, por favor, tente mais tarde!');
+      });
   }
 
   applyFilter(filterValue: string) {

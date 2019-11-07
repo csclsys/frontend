@@ -9,7 +9,7 @@ export class DialogoService {
   constructor(public dialog: MatDialog) {
   }
 
-  abrirDialogoComum(type, info) {
+  abrirDialogoComum(type: 'sccs' | 'erro' | 'info' , info: string) {
     const dialogRef = this.dialog.open(DialogoComumComponent, {
       data: {type, info}
     });

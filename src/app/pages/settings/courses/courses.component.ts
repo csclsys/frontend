@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {ApiService} from "../../../services/api.service";
+import {DialogoService} from '../../../services/dialog/dialogo.service';
 
 interface CursoModel {
   id: number;
@@ -14,7 +15,7 @@ interface CursoModel {
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  constructor(private api: ApiService ) {}
+  constructor(private api: ApiService, public dialogo: DialogoService ) {}
 
   displayedColumns: string[] = ['id', 'nome'];
   dataSource;
@@ -30,6 +31,21 @@ export class CoursesComponent implements OnInit {
       error: err => console.log(err)
     });
 
+  }
+
+  importarTodosCursos() {
+
+    this.api.post('cursos/importarCursos', {})
+      .subscribe((result: any[]) => {
+        this.dialogo.abrirDialogoComum('sccs', `${result.length} cursos(s) importado(s) com sucesso!`);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+
+      }, error => {
+        this.dialogo.abrirDialogoComum('erro', 'Ocorreu um erro na sua solicitação, por favor, tente mais tarde!');
+      });
   }
 
   applyFilter(filterValue: string) {

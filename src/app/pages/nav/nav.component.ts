@@ -1,5 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {Router} from '@angular/router';
+import {DialogoService} from '../../services/dialog/dialogo.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,6 +9,12 @@ import {MediaMatcher} from '@angular/cdk/layout';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnDestroy {
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public router: Router, public dialogo: DialogoService) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this.mobileQueryListener);
+  }
 
   currentSubject = 'Nenhuma disciplina escolhida';
 
@@ -70,14 +78,19 @@ export class NavComponent implements OnInit, OnDestroy {
 
   private mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this.mobileQueryListener);
-  }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
+  }
+
+  isLogin() {
+    return window.location.pathname === '/login';
+  }
+
+  logout() {
+    localStorage.clear();
+    this.dialogo.abrirDialogoComum('info', 'Você saiu!');
+    this.router.navigateByUrl('/');
   }
 
 

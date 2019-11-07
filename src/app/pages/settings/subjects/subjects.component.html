@@ -12,8 +12,10 @@
 
     <div class="row">
       <div class="col-12 d-flex flex-row-reverse align-items-center btn-table-page">
-        <button style="margin-left: 10px" routerLink="./cadastrar" mat-fab matTooltip="Cadastrar" color="primary"><mat-icon>add_user</mat-icon></button>
-        <button [disabled]="0" mat-mini-fab color="primary" matTooltip="Importar Disciplinas"><mat-icon>arrow_downward</mat-icon></button>
+        <button style="margin-left: 10px" mat-fab matTooltip="Importar Disciplinas" (click)="importarTodasDisciplinas()"
+                color="primary">
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
       </div>
     </div>
 
