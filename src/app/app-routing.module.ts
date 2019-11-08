@@ -33,6 +33,7 @@ import {LoginComponent} from './login/login.component';
 import {MatriculaAlunoComponent} from './pages/settings/matricula-aluno/matricula-aluno.component';
 import {MatriculaMonitorComponent} from './pages/settings/matricula-monitor/matricula-monitor.component';
 import {DesignarMonitorComponent} from './pages/settings/matricula-monitor/designar-monitor/designar-monitor.component';
+import {ChatDiscussaoComponent} from './pages/chats/chat-section/chat-discussao/chat-discussao.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -63,7 +64,12 @@ const routes: Routes = [
       {
         path: 'chats', children: [
           {path: '', component: ChatsComponent},
-          {path: 'secao', component: ChatSectionComponent},
+          {
+            path: 'secao', children: [
+              {path: '', component: ChatSectionComponent},
+              {path: 'discussao', component: ChatDiscussaoComponent},
+            ]
+          }
         ]
       },
 

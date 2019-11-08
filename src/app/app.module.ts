@@ -48,6 +48,20 @@ import {LoginComponent} from './login/login.component';
 import { MatriculaAlunoComponent } from './pages/settings/matricula-aluno/matricula-aluno.component';
 import { MatriculaMonitorComponent } from './pages/settings/matricula-monitor/matricula-monitor.component';
 import { DesignarMonitorComponent } from './pages/settings/matricula-monitor/designar-monitor/designar-monitor.component';
+import { ChatDiscussaoComponent } from './pages/chats/chat-section/chat-discussao/chat-discussao.component';
+import {
+  CovalentCommonModule, CovalentDataTableModule,
+  CovalentDialogsModule,
+  CovalentExpansionPanelModule,
+  CovalentLayoutModule,
+  CovalentLoadingModule,
+  CovalentMediaModule, CovalentMenuModule,
+  CovalentMessageModule,
+  CovalentNotificationsModule,
+  CovalentPagingModule,
+  CovalentSearchModule,
+  CovalentStepsModule
+} from '@covalent/core';
 
 @NgModule({
   declarations: [
@@ -85,7 +99,8 @@ import { DesignarMonitorComponent } from './pages/settings/matricula-monitor/des
     LoginComponent,
     MatriculaAlunoComponent,
     MatriculaMonitorComponent,
-    DesignarMonitorComponent
+    DesignarMonitorComponent,
+    ChatDiscussaoComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +111,21 @@ import { DesignarMonitorComponent } from './pages/settings/matricula-monitor/des
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    WebcamModule
+    WebcamModule,
+    /** Covalent Modules */
+    CovalentCommonModule,
+    CovalentLayoutModule,
+    CovalentMediaModule,
+    CovalentExpansionPanelModule,
+    CovalentStepsModule,
+    CovalentDialogsModule,
+    CovalentLoadingModule,
+    CovalentSearchModule,
+    CovalentPagingModule,
+    CovalentNotificationsModule,
+    CovalentMenuModule,
+    CovalentDataTableModule,
+    CovalentMessageModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt}

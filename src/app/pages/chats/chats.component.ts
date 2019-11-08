@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersModel} from '../settings/users-control/users.model';
+import {MatTableDataSource} from '@angular/material';
+import {ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-chats',
@@ -7,18 +10,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatsComponent implements OnInit {
 
-  chatsCards = [
-    {title: 'Tema 1', img: '../../../assets/img/forum/1.jpg'},
-    {title: 'Tema 2', img: '../../../assets/img/forum/2.jpg'},
-    {title: 'Tema 3', img: '../../../assets/img/forum/3.jpg'},
-    {title: 'Tema 4', img: '../../../assets/img/forum/4.jpg'},
-    {title: 'Tema 5', img: '../../../assets/img/forum/5.jpg'},
-    {title: 'Tema 6', img: '../../../assets/img/forum/6.jpg'},
-  ];
+  constructor(
+    private api: ApiService
+  ) {}
 
-  constructor() { }
+
+  temasSelecionados: any[] = [];
+
+  usuarios: any[] = [];
+
 
   ngOnInit() {
+    this.buscarUsuarios();
+  }
+
+  buscarUsuarios() {
+    this.api.get('usuarios').subscribe({
+      next: (res: UsersModel[]) => {
+        console.log(res);
+        this.usuarios = res;
+        this.buscarTemas();
+      },
+      error: err => console.log(err)
+    });
+  }
+
+  buscarTemas() {
+    this.api.get('temas').subscribe(
+      (res: any) => {
+        console.log(res);
+
+        for (const tema of res) {
+          const disc = JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplinaId;
+          if (tema.disciplinaId === disc) {
+
+            const {nome, sobrenome} = this.usuarios[this.usuarios.findIndex(x => x.id === tema.proponenteId)];
+
+            this.temasSelecionados.push({
+              ...tema,
+              nomeProponente: `${nome} ${sobrenome}`
+            });
+          }
+        }
+
+        console.log(this.temasSelecionados);
+
+      },
+      error => {
+
+      }
+    );
   }
 
 }

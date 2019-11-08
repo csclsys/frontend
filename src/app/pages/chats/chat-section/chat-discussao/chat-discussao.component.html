@@ -1,0 +1,42 @@
+<mat-toolbar class="custom-toolbar">
+  <mat-icon style="color: #666">forum</mat-icon> <span style="color: #666; margin-left: 10px">Sala | {{this.infoSala.descrPergunta}}</span>
+</mat-toolbar>
+<div class="container-fluid main-section">
+  <div class="row">
+    <div class="col-12 right-sidebar">
+      <div class="row">
+        <div class="col-md-12 right-header-contentChat" [style.height]="innerHeight + 'px'">
+          <ul>
+            <li>
+              <div [class]="idUsuarioAtual === chat.autorInfo.id ? 'rightside-right-chat' : 'rightside-left-chat'"
+                   *ngFor="let chat of chats"
+              >
+                <span>
+                  <i class="fa fa-circle" aria-hidden="true"></i>
+                  {{chat.autorInfo.nome}}
+                  <small>
+                    {{
+                      chat.horarioResposta.slice(11, 16) + " " +
+                      chat.horarioResposta.slice(8, 10) + "/" +
+                      chat.horarioResposta.slice(5, 7) + "/" +
+                      chat.horarioResposta.slice(0, 4)
+                    }}
+                  </small>
+                </span>
+                <br><br>
+                <p>
+                  {{chat.texto}}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 right-chat-textbox">
+          <input type="text"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

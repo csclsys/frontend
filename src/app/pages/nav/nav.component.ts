@@ -70,7 +70,7 @@ export class NavComponent implements OnInit, OnDestroy {
       toolTip: 'Temas para uso nos Foruns, Chat e Video Chat'
     },
     {
-      name: 'Sala',
+      name: 'Salas',
       icon: 'forum',
       router: './chats',
       toolTip: 'Chat com os monitores e professores para tirar dúvidas'

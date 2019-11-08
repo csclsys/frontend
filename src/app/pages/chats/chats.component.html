@@ -6,8 +6,8 @@
     </div>
     <div class="row">
       <div class="col-12 title-sec">
-        <mat-icon>chat</mat-icon>
-        <h1 class="">&nbsp;Chats</h1>
+        <mat-icon>forum</mat-icon>
+        <h1 class="">&nbsp;Salas</h1>
       </div>
     </div>
   </div>
@@ -16,11 +16,15 @@
 
 
   <div class="row dashboard-course-cards">
-    <div style="cursor: pointer" class="col-md-4" *ngFor="let card of chatsCards" routerLink="./secao">
+    <div class="col-12">
+      <h3>Para continuar escolha um tema</h3>
+    </div>
+    <div style="cursor: pointer" class="col-md-4" *ngFor="let card of temasSelecionados; let i = index" routerLink="./secao" [queryParams]="{tema: card.id}">
       <div class="card mb-3">
-        <img class="card-img-top course-card-img" [src]="card.img" alt="Card image cap">
+        <img class="card-img-top course-card-img" [src]="'../../../assets/img/forum/' + (i + 1) + '.jpg'" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">{{card.title}}</h5>
+          <h5 class="card-title">{{card.nome}}</h5>
+          <small>Proposto por: {{card.nomeProponente}}</small>
         </div>
       </div>
     </div>
