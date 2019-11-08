@@ -4,6 +4,7 @@ import {DialogoService} from '../../../../services/dialog/dialogo.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UsersModel} from '../../../settings/users-control/users.model';
 import {FormControl, Validators} from '@angular/forms';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-chat-discussao',
@@ -37,6 +38,7 @@ export class ChatDiscussaoComponent implements OnInit {
   respostasOrganizadas = [
     {
       id: 0,
+      tipo: 'texto',
       autorInfo: {
         id: 4,
         nome: 'Marcos',
@@ -68,6 +70,7 @@ export class ChatDiscussaoComponent implements OnInit {
     },
     {
       id: 2,
+      tipo: 'texto',
       autorInfo: {
         id: 3,
         nome: 'Lucas',
@@ -140,7 +143,7 @@ export class ChatDiscussaoComponent implements OnInit {
 
 
   buscarRespostas() {
-    this.api.get('respostaSalas/porSala', {salaId: this.idSala} ).subscribe(
+    this.api.get('respostaSalas/porSala', {salaId: this.idSala}).subscribe(
       (result: any) => {
         console.log(result);
         this.respostas = result;
@@ -169,6 +172,7 @@ export class ChatDiscussaoComponent implements OnInit {
 
   publicarReposta() {
     this.api.post('respostaSalas', {
+      tipo: 'texto',
       texto: this.resposta.value,
       salaId: this.idSala,
       usuarioId: this.idUsuarioAtual
@@ -187,4 +191,32 @@ export class ChatDiscussaoComponent implements OnInit {
     this.innerHeight = window.innerHeight - 220;
     console.log(this.innerHeight);
   }
+
+  async onFileSelected(event) {
+    const file: File = event.target.files[0];
+    const base64 = await this.toBase64(file);
+    console.log(base64);
+    this.api.post('respostaSalas', {
+      tipo: 'midia',
+      texto: base64,
+      salaId: this.idSala,
+      usuarioId: this.idUsuarioAtual
+    }).subscribe(
+      res => {
+        this.resposta.patchValue('');
+      },
+      error => {
+        this.dialogo.abrirDialogoComum('erro', 'Houve um erro ao enviar a sua mensagem, tente novamente!');
+      }
+    );
+
+  }
+
+  toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  })
+
 }

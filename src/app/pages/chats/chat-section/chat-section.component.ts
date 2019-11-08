@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {DialogoService} from '../../../services/dialog/dialogo.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatDialog, MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UsersModel} from '../../settings/users-control/users.model';
+import {AddEditThemeComponent} from '../../themes/add-edit-theme/add-edit-theme.component';
+import {AddChatComponent} from './add-chat/add-chat.component';
 
 @Component({
   selector: 'app-chat-section',
@@ -15,7 +17,8 @@ export class ChatSectionComponent implements OnInit {
     private api: ApiService,
     public dialogo: DialogoService,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
   }
 
@@ -50,7 +53,7 @@ export class ChatSectionComponent implements OnInit {
   organizaSalas() {
     const temp = [];
     for (const sala of this.salas) {
-      const { nome, sobrenome } = this.usuarios[this.usuarios.findIndex(x => x.id === sala.usuarioId)];
+      const {nome, sobrenome} = this.usuarios[this.usuarios.findIndex(x => x.id === sala.usuarioId)];
       if (sala.temaId === +this.tema) {
         temp.push({...sala, autor: `${nome} ${sobrenome}`});
       }
@@ -96,6 +99,35 @@ export class ChatSectionComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(AddChatComponent, {
+      disableClose: true,
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const { descrPergunta } = result;
+      this.cadastrarChat(descrPergunta);
+    });
+  }
+
+  cadastrarChat(descricao: string) {
+    this.api.post('salas', {
+      descrPergunta: descricao,
+      tipo: 'sincrona',
+      temaId: +this.tema,
+      usuarioId: JSON.parse(localStorage.getItem('usuario')).id,
+      dataAbertura: new Date().toISOString(),
+    }).subscribe(res => {
+      this.dialogo.abrirDialogoComum('sccs', 'Tema cadastrado com sucesso!');
+
+      this.ngOnInit();
+
+    });
+
   }
 
 }

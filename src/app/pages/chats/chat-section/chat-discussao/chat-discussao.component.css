@@ -110,13 +110,13 @@
   list-style: none;
   margin-top:20px;
 }
-.right-header-contentChat .rightside-left-chat p,.right-header-contentChat .rightside-right-chat p{
+.right-header-contentChat .rightside-left-chat p,.right-header-contentChat .rightside-right-chat p, .right-header-contentChat .rightside-right-chat img, .right-header-contentChat .rightside-left-chat img{
   background-color: #86BB71;
   padding:15px;
   border-radius:8px;
   color:#fff;
 }
-.right-header-contentChat .rightside-right-chat p{
+.right-header-contentChat .rightside-right-chat p,.right-header-contentChat .rightside-right-chat img{
   background-color: #94C2ED;
 }
 .right-chat-textbox{

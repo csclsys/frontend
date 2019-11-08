@@ -1,5 +1,6 @@
 <mat-toolbar class="custom-toolbar">
-  <mat-icon style="color: #666">forum</mat-icon> <span style="color: #666; margin-left: 10px">Sala | {{this.infoSala.descrPergunta}}</span>
+  <mat-icon style="color: #666">forum</mat-icon>
+  <span style="color: #666; margin-left: 10px">Sala | {{this.infoSala.descrPergunta}}</span>
 </mat-toolbar>
 <div class="container-fluid main-section">
   <div class="row">
@@ -26,9 +27,10 @@
                   </small>
                 </span>
                 <br><br>
-                <p>
+                <p *ngIf="chat.tipo === 'texto'">
                   {{chat.texto}}
                 </p>
+                  <img *ngIf="chat.tipo === 'midia'" [src]="chat.texto" alt="" height="400px">
               </div>
             </li>
           </ul>
@@ -40,6 +42,15 @@
           <a (click)="publicarReposta()">
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </a>
+          <a>
+            <label for="file-upload" class="custom-file-upload">
+              <i class="fa fa-paperclip" aria-hidden="true"></i>
+            </label>
+          </a>
+
+          <input style="display: none" id="file-upload" type="file" (change)="onFileSelected($event)"/>
+
+
         </div>
       </div>
     </div>

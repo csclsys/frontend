@@ -1,0 +1,18 @@
+<h1 mat-dialog-title> Cadastrar Sala</h1>
+<mat-dialog-content style="padding: 20px">
+  <p>Entre abaixo com o tópico de discussão</p>
+  <mat-form-field>
+    <input matInput placeholder="Sala" [formControl]="descrPergunta">
+  </mat-form-field>
+  <div align="end">
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-mini-fab color="warn" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" [disabled]="descrPergunta.invalid"
+          [mat-dialog-close]="{descrPergunta: descrPergunta.value}">
+    <mat-icon>check</mat-icon>
+  </button>
+</div>
