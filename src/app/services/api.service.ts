@@ -8,8 +8,8 @@ import {catchError} from 'rxjs/operators';
 })
 export class ApiService {
 
-  // url = 'http://localhost:4000/';
-  url = 'http://192.168.0.61:4000/';
+  url = 'http://localhost:4000/';
+  // url = 'http://192.168.0.61:4000/';
 
   constructor(private http: HttpClient) {
   }

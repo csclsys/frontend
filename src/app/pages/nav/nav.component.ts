@@ -203,6 +203,7 @@ export class NavComponent implements OnInit, OnDestroy {
     CURRENT_SUBJECT = JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplina || 'Nenhuma disciplina escolhida';
     this.currentSubject = JSON.parse(localStorage.getItem('@discite:currentSubject')).disciplina || 'Nenhuma disciplina escolhida';
 
+    await this.router.navigateByUrl('/dashboard');
     location.reload();
   }
 

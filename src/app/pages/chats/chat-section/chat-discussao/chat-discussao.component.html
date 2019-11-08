@@ -9,11 +9,13 @@
           <ul>
             <li>
               <div [class]="idUsuarioAtual === chat.autorInfo.id ? 'rightside-right-chat' : 'rightside-left-chat'"
-                   *ngFor="let chat of chats"
+                   *ngFor="let chat of respostasOrganizadas"
               >
                 <span>
                   <i class="fa fa-circle" aria-hidden="true"></i>
-                  {{chat.autorInfo.nome}}
+                  {{idUsuarioAtual === chat.autorInfo.id ? 'Você' : (chat.autorInfo.nome + ' ' + chat.autorInfo.sobrenome)}}
+                  <span *ngIf="chat.autorInfo.papel === 'professor'"> - </span>
+                  <strong *ngIf="chat.autorInfo.papel === 'professor'" style="color: #4e9fff">Professor ☑</strong>
                   <small>
                     {{
                       chat.horarioResposta.slice(11, 16) + " " +
@@ -34,7 +36,10 @@
       </div>
       <div class="row">
         <div class="col-md-12 right-chat-textbox">
-          <input type="text"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+          <input placeholder="Escreva uma mensagem..." type="text" [formControl]="resposta">
+          <a (click)="publicarReposta()">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>

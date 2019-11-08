@@ -2,6 +2,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {ApiService} from '../../../../services/api.service';
 import {DialogoService} from '../../../../services/dialog/dialogo.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UsersModel} from '../../../settings/users-control/users.model';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-chat-discussao',
@@ -18,6 +20,8 @@ export class ChatDiscussaoComponent implements OnInit {
 
   }
 
+  resposta = new FormControl('', [Validators.required]);
+
   innerHeight = 0;
 
   idUsuarioAtual = JSON.parse(localStorage.getItem('usuario')).id || 0;
@@ -26,7 +30,11 @@ export class ChatDiscussaoComponent implements OnInit {
 
   infoSala = {};
 
-  chats = [
+  usuarios = [];
+
+  respostas = [];
+
+  respostasOrganizadas = [
     {
       id: 0,
       autorInfo: {
@@ -101,12 +109,75 @@ export class ChatDiscussaoComponent implements OnInit {
 
     this.buscarSala();
 
+    this.buscarUsuarios();
+
+
+    setInterval(() => {
+      this.buscarRespostas();
+    }, 2000);
+
+
   }
 
   buscarSala() {
     this.api.get(`salas/${this.idSala}`).subscribe(
       result => {
         this.infoSala = result;
+      }
+    );
+  }
+
+  buscarUsuarios() {
+    this.api.get('usuarios').subscribe({
+      next: (res: UsersModel[]) => {
+        console.log(res);
+        this.usuarios = res;
+        this.buscarRespostas();
+      },
+      error: err => console.log(err)
+    });
+  }
+
+
+  buscarRespostas() {
+    this.api.get('respostaSalas/porSala', {salaId: this.idSala} ).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.respostas = result;
+        this.organizarRespostas();
+      },
+      error => {
+
+      }
+    );
+  }
+
+
+  async organizarRespostas() {
+
+    this.respostasOrganizadas = [];
+
+    for (const resposta of this.respostas) {
+      const autor = await this.usuarios[this.usuarios.findIndex(x => x.id === resposta.usuarioId)];
+      this.respostasOrganizadas.push(await
+        {...resposta, autorInfo: autor}
+      );
+    }
+
+    console.log(this.respostasOrganizadas);
+  }
+
+  publicarReposta() {
+    this.api.post('respostaSalas', {
+      texto: this.resposta.value,
+      salaId: this.idSala,
+      usuarioId: this.idUsuarioAtual
+    }).subscribe(
+      res => {
+        this.resposta.patchValue('');
+      },
+      error => {
+        this.dialogo.abrirDialogoComum('erro', 'Houve um erro ao enviar a sua mensagem, tente novamente!');
       }
     );
   }
