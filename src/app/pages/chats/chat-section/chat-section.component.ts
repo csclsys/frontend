@@ -122,7 +122,7 @@ export class ChatSectionComponent implements OnInit {
       usuarioId: JSON.parse(localStorage.getItem('usuario')).id,
       dataAbertura: new Date().toISOString(),
     }).subscribe(res => {
-      this.dialogo.abrirDialogoComum('sccs', 'Tema cadastrado com sucesso!');
+      this.dialogo.abrirDialogoComum('sccs', 'Sala cadastrada com sucesso!');
 
       this.ngOnInit();
 
